@@ -1,0 +1,33 @@
+body {
+font-family: "Arial", sans-serif;
+}
+/* Style pour un tableau HTML */
+table {
+width: 100%;
+table-layout: auto; /* Redimensionnement automatique des colonnes */
+border-collapse: collapse;
+margin: 20px 0;
+font-size: 16px;
+}
+table, th, td {
+border: 1px solid #ccc;
+}
+/* Style pour l'en-tête du tableau */
+th {
+background-color: #f2f2f2;
+font-weight: bold;
+}
+/* Style pour les lignes impaires du tableau */
+tr:nth-child(odd) {
+background-color: #f9f9f9;
+}
+/* Style pour les cellules du tableau */
+td {
+padding: 10px;
+text-align: left;
+}
+/* Style pour les liens dans le tableau */
+a {
+text-decoration: none;
+color: #007bff;
+}
