@@ -126,9 +126,17 @@ def create_html_file(df, file_name, nrows_value, start_time):
             </table>
         </div>  
         <div>
-            <h3>Dataframe (Extrait):</h3>
+            <h3>10 premières lignes :</h3>
             <table> 
-                {df.to_html(index=False, escape=False, classes='table table-bordered')}
+                {df.head(10).to_html(index=False, escape=False, classes='table table-bordered')}
+            </table>
+            <h3>10 lignes au hasard :</h3>
+            <table> 
+                {df.sample(10).to_html(index=False, escape=False, classes='table table-bordered')}
+            </table>
+            <h3>10 dernières lignes :</h3>
+            <table> 
+                {df.tail(10).to_html(index=False, escape=False, classes='table table-bordered')}
             </table>
         </div>
     </body>
