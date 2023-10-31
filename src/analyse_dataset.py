@@ -73,6 +73,10 @@ def create_html_file(df, file_name, nrows_value, start_time):
     with open(css_file_path, 'r') as css_file:
         css_content = css_file.read()
 
+    first_rows = files_dict[file_name][3]  # x premières lignes
+    sample_rows = files_dict[file_name][4]  # x lignes au hasard
+    last_rows = files_dict[file_name][5]  # x dernières lignes
+
     # Ajout du style CSS directement dans le fichier HTML
     html_content = f"""
     <html>
@@ -126,17 +130,17 @@ def create_html_file(df, file_name, nrows_value, start_time):
             </table>
         </div>  
         <div>
-            <h3>10 premières lignes :</h3>
+            <h3>{first_rows} premières lignes :</h3>
             <table> 
-                {df.head(10).to_html(index=False, escape=False, classes='table table-bordered')}
+                {df.head(first_rows).to_html(index=False, escape=False, classes='table table-bordered')}
             </table>
-            <h3>10 lignes au hasard :</h3>
+            <h3>{sample_rows} lignes au hasard :</h3>
             <table> 
-                {df.sample(10).to_html(index=False, escape=False, classes='table table-bordered')}
+                {df.sample(sample_rows).to_html(index=False, escape=False, classes='table table-bordered')}
             </table>
-            <h3>10 dernières lignes :</h3>
+            <h3>{last_rows} dernières lignes :</h3>
             <table> 
-                {df.tail(10).to_html(index=False, escape=False, classes='table table-bordered')}
+                {df.tail(last_rows).to_html(index=False, escape=False, classes='table table-bordered')}
             </table>
         </div>
     </body>
@@ -163,14 +167,14 @@ def upload_file_to_ftp(local_file_path, remote_file_path, ftp):
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.akas.tsv': ('C:\Temp\Dataframes', '\t', 1000),
-    'complementaire_tmdb_full.csv': ('C:\Temp/Dataframes', ',', 1000),
-    'title.ratings.tsv': ('C:\Temp/Dataframes', '\t', 500),
-    'title.principals.tsv': ('C:\Temp/Dataframes', '\t', 800),
-    'title.episode.tsv': ('C:\Temp/Dataframes', '\t', 300),
-    'title.crew.tsv': ('C:\Temp/Dataframes', '\t', 700),
-    'title.basics.tsv': ('C:\Temp/Dataframes', '\t', 1200),
-    'name.basics.tsv': ('C:\Temp/Dataframes', '\t', 900),
+    'title.akas.tsv': ('C:\Temp\Dataframes', '\t', 1000, 10, 11, 12),
+    'complementaire_tmdb_full.csv': ('C:\Temp/Dataframes', ',', 1000, 13, 14, 15),
+    'title.ratings.tsv': ('C:\Temp/Dataframes', '\t', 500, 16, 17, 18),
+    'title.principals.tsv': ('C:\Temp/Dataframes', '\t', 800, 19, 20, 21),
+    'title.episode.tsv': ('C:\Temp/Dataframes', '\t', 300, 22, 23, 24),
+    'title.crew.tsv': ('C:\Temp/Dataframes', '\t', 700, 25, 26, 27),
+    'title.basics.tsv': ('C:\Temp/Dataframes', '\t', 1200, 28, 29, 30),
+    'name.basics.tsv': ('C:\Temp/Dataframes', '\t', 900, 31, 32, 33),
 }
 
 # Début du chronomètre
@@ -178,7 +182,7 @@ import time
 start_time = time.time()
 
 # Parcours du dictionnaire de fichiers
-for file_name, (path, separator, nrows_value) in files_dict.items():
+for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows) in files_dict.items():
     content = download_or_read_file(file_name, path, separator, nrows_value)
     if content is not None:
         df = create_dataframe(content, separator, nrows_value)
