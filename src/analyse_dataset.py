@@ -1,18 +1,12 @@
-import requests
-import pandas as pd
-from io import StringIO
-from ftplib import FTP
-import psutil
-import time
-import os
-
 # Informations de connexion au FTP
+from ftplib import FTP
 ftp = FTP('ftp.yaminokoe.net')
 ftp.login(user='The_A-Team@brya2535.odns.fr', passwd='cestpourleprojet.')
 
 # Fonction pour obtenir les informations du DataFrame
 def get_dataframe_info(df):
     import sys
+    import pandas as pd  # Importez pandas ici
     from io import StringIO
 
     original_stdout = sys.stdout
@@ -29,6 +23,10 @@ def get_dataframe_info(df):
 
 # Fonction pour télécharger un fichier depuis une URL ou lire depuis un chemin local
 def download_or_read_file(file_name, path, separator, nrows_value):
+    import requests  # Importez requests ici
+    import pandas as pd  # Importez pandas ici
+    from io import StringIO
+
     if path.startswith('http'):
         # Le chemin est une URL, téléchargez le fichier depuis le site web
         file_url = path + file_name
@@ -43,6 +41,8 @@ def download_or_read_file(file_name, path, separator, nrows_value):
 
 # Fonction pour créer un DataFrame à partir du contenu du fichier
 def create_dataframe(content, separator, nrows_value):
+    import pandas as pd  # Importez pandas ici
+    from io import StringIO    
     try:
         # Création d'un DataFrame avec les premières lignes en fonction du séparateur
         df = pd.read_csv(StringIO(content), sep=separator, nrows=nrows_value, low_memory=False, encoding='UTF-8')
@@ -53,6 +53,8 @@ def create_dataframe(content, separator, nrows_value):
 
 # Fonction pour créer un fichier HTML à partir du DataFrame
 def create_html_file(df, file_name, nrows_value, start_time):
+    import psutil
+    import os
     info_output = get_dataframe_info(df)
 
     if info_output is not None:
@@ -157,13 +159,14 @@ files_dict = {
     'complementaire_tmdb_full.csv': ('C:\Temp/Dataframes', ',', 1000),
     'title.ratings.tsv': ('C:\Temp/Dataframes', '\t', 500),
     'title.principals.tsv': ('C:\Temp/Dataframes', '\t', 800),
-    'title.episode.tsv': ('http://yaminokoe.net/imdb/', '\t', 300),
+    'title.episode.tsv': ('C:\Temp/Dataframes', '\t', 300),
     'title.crew.tsv': ('C:\Temp/Dataframes', '\t', 700),
     'title.basics.tsv': ('C:\Temp/Dataframes', '\t', 1200),
-    'name.basics.tsv': ('http://yaminokoe.net/imdb/', '\t', 900),
+    'name.basics.tsv': ('C:\Temp/Dataframes', '\t', 900),
 }
 
 # Début du chronomètre
+import time
 start_time = time.time()
 
 # Parcours du dictionnaire de fichiers
