@@ -181,12 +181,48 @@ files_dict = {
 import time
 start_time = time.time()
 
+# Fonction pour créer un répertoire
+def create_directory(directory_path):
+    os.makedirs(directory_path, exist_ok=True)
+
+def create_csv_directory(directory_path):
+    import os
+    """
+    Crée un répertoire pour stocker les fichiers .csv s'il n'existe pas.
+    Args:
+        directory_path (str): Le chemin du répertoire.
+    """
+    os.makedirs(directory_path, exist_ok=True)
+
+# Fonction pour créer des fichiers CSV
+def create_csv_files(df, csv_directory, file_name, first_rows, sample_rows, last_rows):
+    create_directory(csv_directory)
+
+    if first_rows > 0:
+        df.head(nrows_value).to_csv(os.path.join(csv_directory, f'{file_name}_explore.csv'), index=False, encoding='UTF-8')
+    if first_rows > 0:
+        df.head(first_rows).to_csv(os.path.join(csv_directory, f'{file_name}_head.csv'), index=False, encoding='UTF-8')
+    if sample_rows > 0:
+        df.sample(sample_rows).to_csv(os.path.join(csv_directory, f'{file_name}_sample.csv'), index=False, encoding='UTF-8')
+    if sample_rows > 0:
+        df.sample(nrows_value).to_csv(os.path.join(csv_directory, f'{file_name}_big_sample.csv'), index=False, encoding='UTF-8')
+    if last_rows > 0:
+        df.tail(last_rows).to_csv(os.path.join(csv_directory, f'{file_name}_tail.csv'), index=False, encoding='UTF-8')
+
 # Parcours du dictionnaire de fichiers
 for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows) in files_dict.items():
+    
+    import os
     content = download_or_read_file(file_name, path, separator, nrows_value)
+    
+    # Utilisez la fonction pour créer le répertoire des fichiers .csv
+    csv_directory = './data/analyse/csv'
+    create_csv_directory(csv_directory)
+    
     if content is not None:
         df = create_dataframe(content, separator, nrows_value)
         if df is not None:
+            create_csv_files(df, './data/analyse/csv', file_name, first_rows, sample_rows, last_rows)       
             create_html_file(df, file_name, nrows_value, start_time)  # Appel à la fonction pour créer le fichier HTML
             local_file_path = f'./data/analyse/{file_name}.html'
             remote_file_path = 'analyse/' + file_name + '.html'
