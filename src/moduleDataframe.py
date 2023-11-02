@@ -14,8 +14,12 @@ def get_dataframe_info(df):
 
 def create_dataframe(content, separator, nrows_value):
     try:
-        df = pd.read_csv(StringIO(content), sep=separator, nrows=nrows_value, low_memory=False, encoding='UTF-8')
+        if nrows_value == -1:
+            df = pd.read_csv(StringIO(content), sep=separator, low_memory=False, encoding='UTF-8')
+        else:
+            df = pd.read_csv(StringIO(content), sep=separator, nrows=nrows_value, low_memory=False, encoding='UTF-8')
         return df
     except pd.errors.ParserError as e:
         print(f"Erreur lors de la lecture du fichier: {e}")
         return None
+

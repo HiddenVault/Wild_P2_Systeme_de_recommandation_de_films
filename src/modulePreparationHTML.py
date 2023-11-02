@@ -1,10 +1,8 @@
 import moduleDataframe
 import time
-import moduleFTP
-from ftplib import FTP
 
 # Fonction pour créer un fichier HTML à partir du DataFrame
-def create_html_file(df, file_name, nrows_value, start_time, files_dict, ftp):
+def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_file_path, file_prefix=''):
     import psutil
     import os
     import moduleFTP
@@ -14,6 +12,12 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, ftp):
         info_output = info_output.replace('\n', '<br>')
     else:
         info_output = "Aucune information disponible"
+
+    # Enlever le préfixe du nom du fichier
+    # print("Before: file_name =", file_name)
+    # print("file_prefix =", file_prefix)
+    file_name = file_name.replace(file_prefix, '').replace('.html', '')
+    # print("After: file_name =", file_name)
 
     # Chemin absolu du répertoire du script Python
     script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -100,15 +104,8 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, ftp):
     </html>
     """
 
-    # Chemin local du fichier HTML
-    local_file_path = f'./data/analyse/{file_name}.html'
-
     # Écriture du contenu HTML dans le fichier
     with open(local_file_path, 'w', encoding='UTF-8') as f:
         f.write(html_content)
     
     print(f"Exporté en HTML : {local_file_path}")
-    
-    # Transfert du fichier HTML vers le serveur FTP
-    remote_file_path = 'analyse/' + file_name + '.html'
-    moduleFTP.upload_file_to_ftp(local_file_path, remote_file_path, ftp)
