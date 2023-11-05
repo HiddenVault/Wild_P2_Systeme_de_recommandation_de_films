@@ -13,11 +13,8 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_f
     else:
         info_output = "Aucune information disponible"
 
-    # Enlever le préfixe du nom du fichier
-    # print("Before: file_name =", file_name)
-    # print("file_prefix =", file_prefix)
+    # Suppression du préfixe du nom du fichier
     file_name = file_name.replace(file_prefix, '').replace('.html', '')
-    # print("After: file_name =", file_name)
 
     # Chemin absolu du répertoire du script Python
     script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -93,7 +90,7 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_f
             </table>
             <h3>{sample_rows} lignes au hasard :</h3>
             <table> 
-                {df.sample(sample_rows).to_html(index=False, escape=False, classes='table table-bordered')}
+                {df.sample(frac=0.10).to_html(index=False, escape=False, classes='table table-bordered')}
             </table>
             <h3>{last_rows} dernières lignes :</h3>
             <table> 

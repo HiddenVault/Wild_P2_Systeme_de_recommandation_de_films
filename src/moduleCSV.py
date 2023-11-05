@@ -15,7 +15,7 @@ def create_csv_files(df, csv_directory, file_name, first_rows, sample_rows, last
         print(f"Exporté en CSV : {csv_file_path_head}")
     if sample_rows > 0:
         csv_file_path_sample = os.path.join(csv_directory, f'{file_name}_sample.csv')
-        df.sample(sample_rows).to_csv(csv_file_path_sample, index=False, encoding='UTF-8')
+        df.sample(frac=0.50).to_csv(csv_file_path_sample, index=False, encoding='UTF-8')
         print(f"Exporté en CSV : {csv_file_path_sample}")
     if sample_rows > 0:
         csv_file_path_big_sample = os.path.join(csv_directory, f'{file_name}_big_sample.csv')

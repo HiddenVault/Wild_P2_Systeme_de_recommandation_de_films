@@ -6,10 +6,11 @@ import moduleDataframe
 import modulePreparationHTML
 import time
 import pandas as pd
+import numpy as np
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'name.basics.tsv': ('C:\Temp/Dataframes', '\t', -1, 31, 32, 33)
+    'title.crew.tsv': ('C:\Temp/Dataframes', '\t', -1, 25, 26, 27)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -32,22 +33,26 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
         if df_original is not None:
             df_copy = df_original.copy()
 
-            # Suppression des colonnes 'birthYear' et 'deathYear'
-            columns_to_drop = ['birthYear', 'deathYear']
-            df_copy = df_copy.drop(columns=columns_to_drop)
+            # Remplacement de toutes les occurrences de "\\N" par NaN dans le DataFrame
+            df_copy = df_copy.replace('\\N', None)
 
-            # Création des colonnes de valeurs dummies pour 'primaryProfession'
-            dummies = df_copy['primaryProfession'].str.get_dummies(sep=',')
-            df_copy = pd.concat([df_copy, dummies], axis=1)
+            # Trouvez le nombre maximal d'éléments dans une cellule
+            max_elements_directors = df_copy['directors'].str.count(',') + 1
+            max_elements_directors = int(max_elements_directors.max())
 
-            # Renommage de la colonne 'knownForTitles' en 'tconst'
-            df_copy = df_copy.rename(columns={'knownForTitles': 'tconst'})
-            # Division de la colonne 'tconst' en listes de valeurs
-            df_copy['tconst'] = df_copy['tconst'].str.split(',')
-            df_copy = df_copy.explode('tconst')
+            max_elements_writers = df_copy['writers'].str.count(',') + 1
+            max_elements_writers = int(max_elements_writers.max())        
 
-            # Supprimer la colonne 'primaryProfession'
-            columns_to_drop = ['primaryProfession']
+            # Division de la colonne "directors" en plusieurs colonnes distinctes
+            for i in range(max_elements_directors):
+                df_copy[f'directors{i+1}'] = df_copy['directors'].str.split(',', expand=True, n=i+1)[i]
+
+            # Division de la colonne "writers" en plusieurs colonnes distinctes
+            for i in range(max_elements_writers):
+                df_copy[f'writers{i+1}'] = df_copy['writers'].str.split(',', expand=True, n=i+1)[i]
+
+            # Suppression des colonnes 'directors', 'writers'
+            columns_to_drop = ['directors', 'writers']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Réinitialiser les index si nécessaire

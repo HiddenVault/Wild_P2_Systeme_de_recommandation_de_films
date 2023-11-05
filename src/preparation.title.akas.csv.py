@@ -9,7 +9,7 @@ import pandas as pd
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'name.basics.tsv': ('C:\Temp/Dataframes', '\t', -1, 31, 32, 33)
+    'title.akas.tsv': ('C:\Temp\Dataframes', '\t', -1, 10, 11, 12)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -32,23 +32,12 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
         if df_original is not None:
             df_copy = df_original.copy()
 
-            # Suppression des colonnes 'birthYear' et 'deathYear'
-            columns_to_drop = ['birthYear', 'deathYear']
+            # Suppression des colonnes 'ordering', 'attributes', 'types', 'isoriginaltitle'
+            columns_to_drop = ['ordering', 'attributes', 'types', 'isOriginalTitle']
             df_copy = df_copy.drop(columns=columns_to_drop)
-
-            # Création des colonnes de valeurs dummies pour 'primaryProfession'
-            dummies = df_copy['primaryProfession'].str.get_dummies(sep=',')
-            df_copy = pd.concat([df_copy, dummies], axis=1)
 
             # Renommage de la colonne 'knownForTitles' en 'tconst'
-            df_copy = df_copy.rename(columns={'knownForTitles': 'tconst'})
-            # Division de la colonne 'tconst' en listes de valeurs
-            df_copy['tconst'] = df_copy['tconst'].str.split(',')
-            df_copy = df_copy.explode('tconst')
-
-            # Supprimer la colonne 'primaryProfession'
-            columns_to_drop = ['primaryProfession']
-            df_copy = df_copy.drop(columns=columns_to_drop)
+            df_copy = df_copy.rename(columns={'titleId': 'tconst'})        
 
             # Réinitialiser les index si nécessaire
             # df_copy.reset_index(drop=True, inplace=True)    

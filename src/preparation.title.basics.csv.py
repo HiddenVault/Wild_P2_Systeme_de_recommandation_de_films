@@ -6,10 +6,11 @@ import moduleDataframe
 import modulePreparationHTML
 import time
 import pandas as pd
+import numpy as np
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'name.basics.tsv': ('C:\Temp/Dataframes', '\t', -1, 31, 32, 33)
+    'title.basics.tsv': ('C:\Temp/Dataframes', '\t', -1, 28, 29, 30)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -32,22 +33,26 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
         if df_original is not None:
             df_copy = df_original.copy()
 
-            # Suppression des colonnes 'birthYear' et 'deathYear'
-            columns_to_drop = ['birthYear', 'deathYear']
-            df_copy = df_copy.drop(columns=columns_to_drop)
+            # Remplacez toutes les occurrences de "\\N" par NaN dans le DataFrame
+            df_copy = df_copy.replace({'\\N': np.nan})
 
-            # Création des colonnes de valeurs dummies pour 'primaryProfession'
-            dummies = df_copy['primaryProfession'].str.get_dummies(sep=',')
+            # Création des colonnes de valeurs dummies pour 'genres'
+            dummies = df_copy['genres'].str.get_dummies(sep=',')
             df_copy = pd.concat([df_copy, dummies], axis=1)
 
-            # Renommage de la colonne 'knownForTitles' en 'tconst'
-            df_copy = df_copy.rename(columns={'knownForTitles': 'tconst'})
-            # Division de la colonne 'tconst' en listes de valeurs
-            df_copy['tconst'] = df_copy['tconst'].str.split(',')
-            df_copy = df_copy.explode('tconst')
+            # Supprimez toutes les lignes où 'Short' est égal à 1
+            df_copy = df_copy.loc[df_copy['Short'] != 1]
+            
+            # Filtrage sur titleType = movie 
+            df_copy = df_copy.loc[df_copy['titleType'] == 'movie']            
 
-            # Supprimer la colonne 'primaryProfession'
-            columns_to_drop = ['primaryProfession']
+            # Supprimez toutes les lignes où 'startYear' n'est pas supérieur ou égal à 2019
+            df_copy['startYear'] = pd.to_numeric(df_copy['startYear'], errors='coerce').astype('Int64')
+            #df_copy['startYear'] = df_copy['startYear'].astype(int)
+            df_copy = df_copy[df_copy['startYear'] >= 2019]
+
+            # Suppression des colonnes 'originalTitle', 'isAdult', 'genres','endYear'
+            columns_to_drop = ['originalTitle', 'isAdult', 'genres', 'endYear']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Réinitialiser les index si nécessaire
