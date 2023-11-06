@@ -7,6 +7,7 @@ import modulePreparationHTML
 import time
 import pandas as pd
 import numpy as np
+import ast
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
@@ -36,24 +37,11 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             # Remplacement de toutes les occurrences de "\\N" par NaN dans le DataFrame
             df_copy = df_copy.replace('\\N', None)
 
-            # Trouvez le nombre maximal d'éléments dans une cellule
-            max_elements_directors = df_copy['directors'].str.count(',') + 1
-            max_elements_directors = int(max_elements_directors.max())
+            df_copy['directors'] = df_copy['directors'].str.split(',')
+            df_copy['writers'] = df_copy['writers'].str.split(',')
 
-            max_elements_writers = df_copy['writers'].str.count(',') + 1
-            max_elements_writers = int(max_elements_writers.max())        
-
-            # Division de la colonne "directors" en plusieurs colonnes distinctes
-            for i in range(max_elements_directors):
-                df_copy[f'directors{i+1}'] = df_copy['directors'].str.split(',', expand=True, n=i+1)[i]
-
-            # Division de la colonne "writers" en plusieurs colonnes distinctes
-            for i in range(max_elements_writers):
-                df_copy[f'writers{i+1}'] = df_copy['writers'].str.split(',', expand=True, n=i+1)[i]
-
-            # Suppression des colonnes 'directors', 'writers'
-            columns_to_drop = ['directors', 'writers']
-            df_copy = df_copy.drop(columns=columns_to_drop)
+            df_copy = df_copy.explode('directors')
+            df_copy = df_copy.explode('writers')
 
             # Réinitialiser les index si nécessaire
             # df_copy.reset_index(drop=True, inplace=True)    
