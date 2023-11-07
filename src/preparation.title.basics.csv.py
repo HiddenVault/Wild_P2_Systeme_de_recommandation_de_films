@@ -50,6 +50,7 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             df_copy['startYear'] = pd.to_numeric(df_copy['startYear'], errors='coerce').astype('Int64')
             #df_copy['startYear'] = df_copy['startYear'].astype(int)
             df_copy = df_copy[df_copy['startYear'] >= 2019]
+            df_copy = df_copy[df_copy['startYear'] < 2024]
 
             # Suppression des colonnes 'originalTitle', 'isAdult', 'genres','endYear'
             columns_to_drop = ['originalTitle', 'isAdult', 'genres', 'endYear']

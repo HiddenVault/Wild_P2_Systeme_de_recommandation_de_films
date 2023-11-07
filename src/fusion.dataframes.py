@@ -44,11 +44,11 @@ for file_name, (directory, separator, lines, *_) in files_dict.items():
 
 print(dataframes)
 
-merged_df = pd.merge(dataframes['P_title.principals.tsv.csv_explore.csv'], dataframes['P_title.akas.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
+merged_df = pd.merge(dataframes['P_title.basics.tsv.csv_explore.csv'], dataframes['P_title.akas.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
 merged_df = pd.merge(merged_df, dataframes['P_complementaire_tmdb_full.csv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
 merged_df = pd.merge(merged_df, dataframes['P_title.ratings.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
 merged_df = pd.merge(merged_df, dataframes['P_title.crew.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
-merged_df = pd.merge(merged_df, dataframes['P_title.basics.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
+merged_df = pd.merge(merged_df, dataframes['P_title.principals.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
 merged_df = pd.merge(merged_df, dataframes['P_name.basics.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='inner')
 merged_df = pd.merge(merged_df, dataframes['P_title.episode.tsv.csv_explore.csv'], left_on='tconst', right_on='tconst', how='left')
 

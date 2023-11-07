@@ -44,34 +44,10 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                     return 'https://image.tmdb.org/t/p/original' + str(path)
                 return None
 
-            df_copy['backdrop_path'] = df_copy['backdrop_path'].apply(add_prefix)
-
             df_copy['poster_path'] = df_copy['poster_path'].apply(add_prefix)
-            
-            df_copy['production_countries'] = df_copy['production_countries'].apply(lambda x: ','.join(re.findall(r"'(.*?)'", x)))
-            dummies = df_copy['production_countries'].str.get_dummies(sep=',')
-            dummies = dummies.add_prefix('production_countries_')
-            df_copy = pd.concat([df_copy, dummies], axis=1)
 
-            df_copy['spoken_languages'] = df_copy['spoken_languages'].apply(lambda x: ','.join(re.findall(r"'(.*?)'", x)))
-            df_copy['spoken_languages'] = df_copy['spoken_languages'].str.upper()
-            dummies = df_copy['spoken_languages'].str.get_dummies(sep=',')
-            dummies = dummies.add_prefix('spoken_languages_')
-            df_copy = pd.concat([df_copy, dummies], axis=1)
-
-            #df_copy['production_companies_name'] = df_copy['production_companies_name'].apply(lambda x: ','.join(re.findall(r"'(.*?)'", x)))
-            df_copy['production_companies_country'] = df_copy['production_companies_country'].apply(lambda x: ','.join(re.findall(r"'(.*?)'", x)) if x is not None else '')
-            df_copy['production_companies_name'] = df_copy['production_companies_name'].str.upper()
-            df_copy = df_copy.explode('production_companies_name')
-
-            df_copy['production_companies_country'] = df_copy['production_companies_country'].apply(lambda x: ','.join(re.findall(r"'(.*?)'", x)))
-            df_copy['production_companies_country'] = df_copy['production_companies_country'].str.strip(',')
-            dummies = df_copy['production_companies_country'].str.get_dummies(sep=',')
-            dummies = dummies.add_prefix('production_companies_country_')
-            df_copy = pd.concat([df_copy, dummies], axis=1)
-
-            # Suppression des colonnes 'adult', 'budget', 'genres','homepage','id','original_language','original_title','release_date','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country'
-            columns_to_drop = ['adult', 'budget', 'genres','homepage','id','original_language','original_title','release_date','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country']
+            # Suppression des colonnes 'adult', 'budget', 'genres','homepage','id','original_language','original_title','title','release_date','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','revenue','video'
+            columns_to_drop = ['adult', 'budget', 'genres','homepage','id','original_language','original_title','release_date','title','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','revenue','video']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Réinitialiser les index si nécessaire

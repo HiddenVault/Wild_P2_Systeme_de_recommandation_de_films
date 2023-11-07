@@ -32,6 +32,12 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
         if df_original is not None:
             df_copy = df_original.copy()
 
+            # Conversion de la colonne 'birthYear' en numérique en gérant les erreurs / Les valeurs non corrects sont remplacées par NaN
+            df_copy['birthYear'] = pd.to_numeric(df_copy['birthYear'], errors='coerce')
+            # Remplacement des valeurs NaN par 0
+            df_copy['birthYear'].fillna(0, inplace=True)
+            df_copy = df_copy[df_copy['birthYear'] >= 1920]
+
             # Suppression des colonnes 'birthYear' et 'deathYear'
             columns_to_drop = ['birthYear', 'deathYear']
             df_copy = df_copy.drop(columns=columns_to_drop)
