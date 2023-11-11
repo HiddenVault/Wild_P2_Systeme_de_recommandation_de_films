@@ -30,9 +30,13 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
     moduleOS.create_csv_directory(csv_directory)
     
     if content is not None:
-        df_original = moduleDataframe.create_dataframe(content, separator, nrows_value)  
+        df_original = moduleDataframe.create_dataframe(content, separator, nrows_value)
+
         if df_original is not None:
             df_copy = df_original.copy()
+
+            # Remplacer les retours à la ligne indésirables dans les champs de texte
+            df_copy = df_copy.applymap(lambda x: x.replace('\n', '') if isinstance(x, str) else x)
 
             # Remplacez toutes les occurrences de "NaN" par None dans le DataFrame
             df_copy = df_copy.replace(np.nan, None)
@@ -46,8 +50,8 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
 
             df_copy['poster_path'] = df_copy['poster_path'].apply(add_prefix)
 
-            # Suppression des colonnes 'adult', 'budget', 'genres','homepage','id','original_language','original_title','title','release_date','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','revenue','video'
-            columns_to_drop = ['adult', 'budget', 'genres','homepage','id','original_language','original_title','release_date','title','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','revenue','video']
+            # Suppression des colonnes 'adult', 'budget', 'genres','homepage','id','original_language','original_title','title','release_date','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','revenue','video','vote_average','vote_count'
+            columns_to_drop = ['adult', 'genres','homepage','id','original_language','original_title','release_date','title','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','video','vote_average','vote_count']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Réinitialiser les index si nécessaire

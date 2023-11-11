@@ -40,17 +40,31 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             dummies = df_copy['genres'].str.get_dummies(sep=',')
             df_copy = pd.concat([df_copy, dummies], axis=1)
 
+
             # Supprimez toutes les lignes où 'Short' est égal à 1
-            df_copy = df_copy.loc[df_copy['Short'] != 1]
+            #df_copy = df_copy.loc[df_copy['Short'] != 1]
+            #df_copy = df_copy.loc[df_copy['Talk-Show'] != 1]
+            #df_copy = df_copy.loc[df_copy['Reality-TV'] != 1]
+            #df_copy = df_copy.loc[df_copy['News'] != 1]
+            #df_copy = df_copy.loc[df_copy['Game-Show'] != 1]
+
+            columns_to_drop = ['Short', 'Talk-Show', 'Reality-TV', 'News', 'Game-Show']
+            df_copy = df_copy.drop(columns=columns_to_drop)
+            # L'opérateur ~ est utilisé pour nier le résultat de la condition
+            # Seules les lignes où aucune des colonnes n'est égale à 1 seront conservées.            
+            
+
             
             # Filtrage sur titleType = movie 
             df_copy = df_copy.loc[df_copy['titleType'] == 'movie']            
 
             # Supprimez toutes les lignes où 'startYear' n'est pas supérieur ou égal à 2019
             df_copy['startYear'] = pd.to_numeric(df_copy['startYear'], errors='coerce').astype('Int64')
-            #df_copy['startYear'] = df_copy['startYear'].astype(int)
+            df_copy['startYear'] = df_copy['startYear'].astype(int)
             df_copy = df_copy[df_copy['startYear'] >= 2019]
             df_copy = df_copy[df_copy['startYear'] < 2024]
+            df_copy['runtimeMinutes'] = df_copy['runtimeMinutes'].astype(int)
+            df_copy = df_copy[df_copy['runtimeMinutes'] >= 60]
 
             # Suppression des colonnes 'originalTitle', 'isAdult', 'genres','endYear'
             columns_to_drop = ['originalTitle', 'isAdult', 'genres', 'endYear']

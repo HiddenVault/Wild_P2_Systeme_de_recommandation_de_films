@@ -40,6 +40,9 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             columns_to_drop = ['ordering', 'job', 'characters']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
+            # Renommage de la colonne 'knownForTitles' en 'tconst'
+            df_copy = df_copy.rename(columns={'nconst': 'nconst_tp'})
+
             # Réinitialiser les index si nécessaire
             # df_copy.reset_index(drop=True, inplace=True)    
 

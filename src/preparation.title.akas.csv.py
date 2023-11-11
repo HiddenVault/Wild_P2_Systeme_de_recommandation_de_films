@@ -4,12 +4,11 @@ import moduleDownload
 import moduleOS
 import moduleDataframe
 import modulePreparationHTML
-import time
 import pandas as pd
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.akas.tsv': ('C:\Temp\Dataframes', '\t', -1, 10, 11, 12)
+    'title.akas.tsv': ('C:\Temp\Dataframes', '\t', -1, 100, 100, 100)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -32,8 +31,14 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
         if df_original is not None:
             df_copy = df_original.copy()
 
-            # Suppression des colonnes 'ordering', 'attributes', 'types', 'isoriginaltitle'
-            columns_to_drop = ['ordering', 'attributes', 'types', 'isOriginalTitle']
+            # Remplacez les valeurs '\\N' par None
+            # df_copy.replace({'\\N': None}, inplace=True)
+
+            # Filtrer les lignes avec "isOriginalTitle" égale à 1
+            df_copy = df_copy[df_copy['isOriginalTitle'] == '1']
+
+            # Suppression des colonnes 'ordering', 'attributes', 'types', 'isOriginalTitle', 'language'
+            columns_to_drop = ['ordering', 'attributes', 'types', 'language','region','isOriginalTitle']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Renommage de la colonne 'knownForTitles' en 'tconst'

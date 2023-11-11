@@ -36,7 +36,9 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             df_copy['birthYear'] = pd.to_numeric(df_copy['birthYear'], errors='coerce')
             # Remplacement des valeurs NaN par 0
             df_copy['birthYear'].fillna(0, inplace=True)
-            df_copy = df_copy[df_copy['birthYear'] >= 1920]
+            # Filtrer les dates de naissance supérieures à 1920 ou égales à 0
+            #df_copy = df_copy[df_copy['birthYear'] >= 1920]
+            df_copy = df_copy[(df_copy['birthYear'] >= 1920) | (df_copy['birthYear'] == 0)] # équivaut à OR
 
             # Suppression des colonnes 'birthYear' et 'deathYear'
             columns_to_drop = ['birthYear', 'deathYear']
@@ -48,6 +50,10 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
 
             # Renommage de la colonne 'knownForTitles' en 'tconst'
             df_copy = df_copy.rename(columns={'knownForTitles': 'tconst'})
+
+            # Renommage de la colonne 'knownForTitles' en 'tconst'
+            df_copy = df_copy.rename(columns={'nconst': 'nconst_nb'})
+
             # Division de la colonne 'tconst' en listes de valeurs
             df_copy['tconst'] = df_copy['tconst'].str.split(',')
             df_copy = df_copy.explode('tconst')
