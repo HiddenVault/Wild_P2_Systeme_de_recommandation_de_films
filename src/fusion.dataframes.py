@@ -1,10 +1,10 @@
+# Importation des modules nécessaires
 import os
 import pandas as pd
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
     'P_title.basics.tsv.csv_explore.csv': ('./data/preparation', ',', -1),
-#    'F_merged_data_nconst.csv': ('./data/preparation', ',', -1),
     'P_name.basics.tsv.csv_explore.csv': ('./data/preparation', ',', -1),
     'P_title.principals.tsv.csv_explore.csv': ('./data/preparation', ',', -1),
     'P_title.crew.tsv.csv_explore.csv': ('./data/preparation', ',', -1),
@@ -25,14 +25,18 @@ for file_name, (directory, separator, lines, *_) in files_dict.items():
     try:
         if os.path.exists(file_path):
             if lines == -1:
+                # Lecture du fichier CSV avec toutes les lignes si le nombre est à -1
                 df = pd.read_csv(file_path, sep=separator)
             else:
+                # Lecture du fichier CSV avec le nombre de lignes spécifié s'il est différent de -1
                 df = pd.read_csv(file_path, sep=separator, nrows=lines)
             
             if merged_data is None:
+                # Si c'est le premier fichier, on l'assigne directement à merged_data
                 merged_data = df
                 print(f"Merging {file_name}...")
             else:
+                # Si ce n'est pas le premier fichier, on le fusionne avec merged_data en utilisant la colonne 'tconst'
                 print(f"Merging {file_name}...")
                 merged_data = merged_data.merge(df, on='tconst', how='inner')
                 print(merged_data.head())

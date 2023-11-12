@@ -8,7 +8,7 @@ import pandas as pd
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.akas.tsv': ('C:\Temp\Dataframes', '\t', -1, 100, 100, 100)
+    'title.akas.tsv': ('./data/sources', '\t', -1, 100, 100, 100)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -20,6 +20,7 @@ start_time = time.time()
 
 # Parcours du dictionnaire de fichiers
 for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows) in files_dict.items():
+    # Téléchargement ou lecture du contenu du fichier
     content = moduleDownload.download_or_read_file(file_name, path, separator, nrows_value)
     
     # Appel de la fonction pour créer le répertoire des fichiers .csv
@@ -27,21 +28,21 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
     moduleOS.create_csv_directory(csv_directory)
     
     if content is not None:
+        # Création d'un DataFrame original à partir du contenu du fichier
         df_original = moduleDataframe.create_dataframe(content, separator, nrows_value)  
+        
         if df_original is not None:
+            # Création d'une copie du DataFrame original pour les manipulations
             df_copy = df_original.copy()
-
-            # Remplacez les valeurs '\\N' par None
-            # df_copy.replace({'\\N': None}, inplace=True)
 
             # Filtrer les lignes avec "isOriginalTitle" égale à 1
             df_copy = df_copy[df_copy['isOriginalTitle'] == '1']
 
-            # Suppression des colonnes 'ordering', 'attributes', 'types', 'isOriginalTitle', 'language'
+            # Suppression des colonnes indiquées
             columns_to_drop = ['ordering', 'attributes', 'types', 'language','region','isOriginalTitle']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
-            # Renommage de la colonne 'knownForTitles' en 'tconst'
+            # Renommage de la colonne 'titleId' en 'tconst'
             df_copy = df_copy.rename(columns={'titleId': 'tconst'})        
 
             # Réinitialiser les index si nécessaire
@@ -50,20 +51,20 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             # Création des noms des fichiers avec le préfixe
             csv_file_name = f'{file_prefix}{file_name}.csv'
             html_file_name = f'{file_prefix}{file_name}.html'
-            html_file_name_with_prefix = html_file_name
 
-            moduleCSV.create_csv_files(df_copy, csv_directory, csv_file_name, first_rows, sample_rows, last_rows, nrows_value) # Fonction pour créer des fichiers CSV
+            # Appel de la fonction pour créer des fichiers CSV
+            moduleCSV.create_csv_files(df_copy, csv_directory, csv_file_name, first_rows, sample_rows, last_rows, nrows_value)
+            
             local_file_path = f'./data/preparation/{html_file_name}'  # Déclaration de local_file_path
-            modulePreparationHTML.create_html_file(df_copy, html_file_name, nrows_value, start_time, files_dict, local_file_path, file_prefix='P_') # Fonction pour créer un fichier HTML à partir du DataFrame
+            
+            # Appel de la fonction pour créer un fichier HTML à partir du DataFrame
+            modulePreparationHTML.create_html_file(df_copy, html_file_name, nrows_value, start_time, files_dict, local_file_path, file_prefix='P_')
 
-            # Fonction pour obtenir les informations du DataFrame
+            # Appel de la fonction pour obtenir les informations du DataFrame
             moduleDataframe.get_dataframe_info(df_copy)
 
-            # Fonction pour télécharger un fichier depuis une URL ou lire depuis un chemin local
+            # Appel de la fonction pour télécharger un fichier depuis une URL ou lire depuis un chemin local
             moduleDownload.download_or_read_file(file_name, path, separator, nrows_value)
 
-            # Fonction pour créer un DataFrame à partir du contenu du fichier
+            # Appel de la fonction pour créer un DataFrame à partir du contenu du fichier
             moduleDataframe.create_dataframe(content, separator, nrows_value)
-
-
-

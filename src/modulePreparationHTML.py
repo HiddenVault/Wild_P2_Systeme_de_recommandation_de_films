@@ -1,19 +1,21 @@
-import moduleDataframe
+import moduleDataframe  # Importation du module pour obtenir des informations sur le DataFrame
 import time
+import os
+import psutil
+import moduleFTP  # Importation du module FTP (peut être utilisé pour le transfert vers un serveur FTP)
 
 # Fonction pour créer un fichier HTML à partir du DataFrame
 def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_file_path, file_prefix=''):
-    import psutil
-    import os
-    import moduleFTP
+    # Obtention des informations sur le DataFrame
     info_output = moduleDataframe.get_dataframe_info(df)
 
+    # Si des informations sont disponibles, remplacer les sauts de ligne par des balises <br>
     if info_output is not None:
         info_output = info_output.replace('\n', '<br>')
     else:
         info_output = "Aucune information disponible"
 
-    # Suppression du préfixe du nom du fichier
+    # Suppression du préfixe du nom du fichier et de l'extension .html
     file_name = file_name.replace(file_prefix, '').replace('.html', '')
 
     # Chemin absolu du répertoire du script Python
@@ -27,11 +29,12 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_f
     with open(css_file_path, 'r') as css_file:
         css_content = css_file.read()
 
+    # Récupération des valeurs spécifiées dans le dictionnaire de fichiers
     first_rows = files_dict[file_name][3]  # x premières lignes
     sample_rows = files_dict[file_name][4]  # x lignes au hasard
     last_rows = files_dict[file_name][5]  # x dernières lignes
 
-    # Ajout du style CSS directement dans le fichier HTML
+    # Structure du fichier HTML
     html_content = f"""
     <html>
     <head>
@@ -105,4 +108,5 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_f
     with open(local_file_path, 'w', encoding='UTF-8') as f:
         f.write(html_content)
     
+    # Affichage du chemin du fichier HTML exporté
     print(f"Exporté en HTML : {local_file_path}")

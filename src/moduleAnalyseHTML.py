@@ -14,10 +14,7 @@ def create_html_file(df, file_name, nrows_value, start_time, files_dict, local_f
         info_output = "Aucune information disponible"
     
     # Enlever le préfixe du nom du fichier
-    # print("Before: file_name =", file_name)
-    # print("file_prefix =", file_prefix)
     file_name = file_name.replace(file_prefix, '').replace('.html', '')
-    # print("After: file_name =", file_name)
 
     # Chemin absolu du répertoire du script Python
     script_directory = os.path.dirname(os.path.abspath(__file__))
