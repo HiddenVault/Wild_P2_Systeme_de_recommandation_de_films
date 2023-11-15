@@ -28,12 +28,12 @@ scaler = StandardScaler()
 df_movies_normalized = scaler.fit_transform(df_movies.drop(['tconst', 'TI_primaryTitle'], axis=1))
 
 # On peut utiliser KMeans
-n_clusters = 5  # Nombre de clusters souhaité
+n_clusters = 50  # Nombre de clusters souhaité
 kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 df_movies['cluster'] = kmeans.fit_predict(df_movies_normalized)
 
 # Fonction pour recommander des films en fonction du nom
-def movie_recommendation(movie_name):
+def movie_recommendation(movie_name, num_recommendations = 5):
     matching_movies = df_movies[df_movies['TI_primaryTitle'].str.contains(movie_name, case=False, na=False)]
 
     if matching_movies.empty:
@@ -63,7 +63,8 @@ def movie_recommendation(movie_name):
                                            cluster_movies.drop(['tconst', 'TI_primaryTitle', 'cluster'], axis=1))
 
     recommended_movies_indices = distances[0]
-    recommended_movies = cluster_movies.iloc[recommended_movies_indices][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
+    #recommended_movies = cluster_movies.iloc[recommended_movies_indices][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
+    recommended_movies = cluster_movies.iloc[recommended_movies_indices][:num_recommendations][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
 
     return recommended_movies
 
