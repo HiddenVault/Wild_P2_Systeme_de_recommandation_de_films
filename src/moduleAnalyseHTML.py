@@ -1,3 +1,14 @@
+'''
+Explications :
+1. Le code utilise la bibliothèque `psutil` pour obtenir des informations sur l'utilisation des ressources du système (CPU, mémoire, etc.).
+2. Il utilise également le module `moduleDataframe` pour obtenir des informations sur le DataFrame, 
+    notamment le résumé des données, les noms des colonnes, les types de données, les statistiques descriptives, et le nombre de valeurs manquantes.
+3. La fonction `create_html_file` prend un DataFrame, un nom de fichier, le nombre de lignes à inclure dans le rapport, 
+    le temps de début de génération, un dictionnaire spécifiant les paramètres pour chaque fichier, 
+    le chemin local pour sauvegarder le fichier HTML, et un préfixe optionnel pour le nom de fichier. 
+    Elle génère un fichier HTML complet avec des informations sur le DataFrame et l'utilisation des ressources système.
+'''
+
 import moduleDataframe
 import time
 

@@ -1,3 +1,13 @@
+'''
+Explications  :
+1. Le script définit un dictionnaire (`files_to_process`) contenant des informations sur les scripts à traiter, 
+    notamment s'ils doivent être traités, le mode d'exécution, et leur numéro d'ordre.
+2. Les scripts sont triés en fonction de leur ordre d'exécution.
+3. Ensuite, le script parcourt les scripts triés et exécute chaque script selon ses propriétés. 
+    On peut utiliser `subprocess.run` ou `subprocess.Popen` pour lancer les scripts Python.
+4. Le script affiche des messages sur le début et la fin de l'exécution de chaque script.
+'''
+
 import subprocess
 
 # Dictionnaire définissant les scripts à traiter avec leurs propriétés associées

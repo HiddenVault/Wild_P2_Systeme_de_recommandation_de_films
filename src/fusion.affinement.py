@@ -1,3 +1,15 @@
+'''
+Explications :
+1. Le code commence par importer la bibliothèque pandas sous l'alias 'pd'.
+2. Il spécifie le chemin du fichier CSV à lire (`link`) 
+    et ouvre le fichier en tant que DataFrame (`df`) en utilisant `pd.read_csv()`.
+3. Les colonnes pour chaque catégorie sont sélectionnées 
+    dans des listes distinctes (`selected_columns_ge`, `selected_columns_ti`, etc.).
+4. Des préfixes correspondants sont définis pour chaque catégorie (`prefix_ge`, `prefix_ti`, etc.).
+5. Les colonnes du DataFrame sont renommées en ajoutant les préfixes appropriés en fonction de leur catégorie.
+6. Enfin, le DataFrame modifié est enregistré en tant que fichier CSV sous un nouveau nom (`F2_merged_data.csv`) avec l'encodage 'UTF-8'.
+'''
+
 # Importer la bibliothèque pandas sous l'alias 'pd'
 import pandas as pd
 

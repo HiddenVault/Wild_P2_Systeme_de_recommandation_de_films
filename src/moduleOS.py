@@ -1,3 +1,10 @@
+'''
+Explications :
+1. La fonction `create_directory` prend en paramètre le chemin du répertoire à créer (`directory_path`).
+2. La fonction utilise la fonction `makedirs` du module `os` pour créer le répertoire spécifié. 
+    L'argument `exist_ok=True` permet d'ignorer les erreurs si le répertoire existe déjà.
+3. La fonction `create_csv_directory` fait la même chose que `create_directory`.
+'''
 # Fonction pour créer un répertoire
 def create_directory(directory_path):
     # Importation du module os pour effectuer des opérations sur le système de fichiers

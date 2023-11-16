@@ -1,3 +1,16 @@
+'''
+Explications :
+1. Le code commence par importer les modules nécessaires pour le traitement des fichiers, la manipulation de DataFrames, le téléchargement, etc.
+2. Un dictionnaire (`files_dict`) est défini, spécifiant les noms des fichiers, leurs emplacements, les séparateurs, 
+    et le nombre de lignes à générer dans les fichiers CSV et HTML.
+3. Un préfixe pour les noms de fichiers HTML et CSV est défini (`file_prefix`).
+4. Un chronomètre est démarré pour mesurer le temps de génération du rapport.
+5. Le code parcourt le dictionnaire de fichiers, télécharge ou lit le contenu, crée des DataFrames, 
+    génère des fichiers CSV, HTML, et obtient des informations sur les DataFrames.
+6. Les modules tels que `moduleOS`, `moduleCSV`, `moduleDownload`, `moduleDataframe`, et `moduleAnalyseHTML` 
+    sont utilisés pour effectuer différentes opérations sur les fichiers et les données.
+'''
+
 # Importation des modules nécessaires
 import moduleOS
 import moduleCSV

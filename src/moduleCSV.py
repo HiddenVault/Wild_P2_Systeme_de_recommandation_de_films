@@ -1,3 +1,18 @@
+'''
+Explications :
+1. La fonction `create_csv_files` prend en paramètre un DataFrame (`df`), 
+    un répertoire de destination pour les fichiers CSV (`csv_directory`), 
+    un nom de fichier (`file_name`), 
+    le nombre de premières lignes à inclure dans certains fichiers CSV (`first_rows`), 
+    le nombre de lignes à inclure dans un échantillon aléatoire (`sample_rows`), 
+    le nombre de dernières lignes à inclure (`last_rows`), et un nombre de lignes dans le DataFrame (`nrows_value`).
+2. La fonction utilise le module `moduleOS` pour créer le répertoire de destination CSV si nécessaire.
+3. Elle crée plusieurs fichiers CSV selon les spécifications 
+    (exploration, premières lignes, échantillons aléatoires, dernières lignes) en utilisant la méthode `to_csv` de pandas.
+4. Les noms de fichiers sont générés en fonction des paramètres passés à la fonction, 
+    et chaque opération de création de fichier est suivie d'une impression indiquant le succès de l'opération et le chemin du fichier généré.
+'''
+
 # Importation du module moduleOS pour gérer les opérations sur le système de fichiers
 import moduleOS
 # Importation du module os pour des opérations liées au système d'exploitation

@@ -1,3 +1,16 @@
+'''
+Explications :
+1. La fonction `create_html_file` prend un DataFrame (`df`), 
+    le nom du fichier (`file_name`), 
+    le nombre de lignes à analyser (`nrows_value`), 
+    le temps de début de la génération (`start_time`), 
+    un dictionnaire de fichiers (`files_dict`), 
+    le chemin local pour enregistrer le fichier HTML (`local_file_path`), 
+    et un préfixe (`file_prefix`).
+2. Elle utilise différentes bibliothèques telles que `psutil` pour obtenir des informations système, 
+    `os` pour les opérations sur le système
+'''
+
 import moduleDataframe  # Importation du module pour obtenir des informations sur le DataFrame
 import time
 import os

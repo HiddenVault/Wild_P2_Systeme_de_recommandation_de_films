@@ -1,3 +1,16 @@
+'''
+Explications :
+1. Le code commence par définir un dictionnaire (`files_dict`) contenant les noms des fichiers, 
+    leurs emplacements, le type de séparateur, et le nombre de lignes à lire (-1 pour tout lire).
+2. Un préfixe pour le fichier de sortie (`file_prefix`) est défini.
+3. Un DataFrame (`merged_data`) est initialisé à `None` pour stocker les données fusionnées.
+4. Les fichiers CSV sont lus un par un, et s'ils existent, 
+    ils sont fusionnés dans le DataFrame `merged_data` en utilisant la colonne 'tconst'.
+5. Le DataFrame fusionné est ensuite enregistré dans un fichier CSV 
+    avec un nom généré à partir du préfixe défini.
+6. Des messages sont affichés pour informer l'utilisateur de l'avancement du processus.
+'''
+
 # Importation des modules nécessaires
 import os
 import pandas as pd

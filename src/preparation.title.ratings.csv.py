@@ -1,3 +1,12 @@
+'''
+Explications :
+1. Le script commence par importer différents modules nécessaires et définir des variables, 
+    telles que le dictionnaire `files_dict` qui contient les détails des fichiers à traiter et le préfixe pour les fichiers HTML et CSV.
+2. Ensuite, il parcourt chaque fichier spécifié dans le dictionnaire et effectue une série d'opérations, 
+    y compris le téléchargement ou la lecture du fichier, la création d'un répertoire pour les fichiers CSV, 
+    la manipulation du DataFrame, la création de fichiers CSV, et enfin la création d'un fichier HTML avec des informations détaillées.
+'''
+
 import moduleOS
 import moduleCSV
 import moduleDownload

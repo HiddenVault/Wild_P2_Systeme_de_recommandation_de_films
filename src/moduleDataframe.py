@@ -1,3 +1,18 @@
+'''
+Explications :
+1. get_dataframe_info(df):
+   - La fonction `get_dataframe_info` prend un DataFrame (`df`) en entrée.
+   - Elle utilise la méthode `info()` de pandas pour obtenir des informations détaillées sur le DataFrame, 
+        telles que les types de données, les valeurs non nulles, la consommation de mémoire, etc.
+   - Les informations sont capturées en redirigeant la sortie standard vers un objet `StringIO`, puis en restaurant la sortie standard d'origine.
+   - Si aucune information n'est disponible, la fonction retourne un message indiquant cela.
+2. create_dataframe(content, separator, nrows_value):
+   - La fonction `create_dataframe` prend en entrée une chaîne de caractères CSV (`content`), 
+        un séparateur de colonnes (`separator`), et le nombre de lignes à lire (`nrows_value`).
+   - Elle utilise la bibliothèque pandas pour créer un DataFrame à partir de la chaîne de caractères CSV.
+   - En cas d'erreur lors de la lecture du fichier CSV, la fonction imprime l'erreur et retourne `None`.
+   - Si la lecture réussit, elle retourne le DataFrame créé.
+'''
 # Importation du module sys pour accéder à des fonctionnalités spécifiques du système
 import sys
 # Importation de la bibliothèque pandas sous l'alias 'pd'

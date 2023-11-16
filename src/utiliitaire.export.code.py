@@ -1,3 +1,18 @@
+'''
+Explications  :
+1. Le script commence par définir le chemin du dossier contenant 
+    les fichiers (`dossier_scripts`) et 
+    la liste des noms de fichiers à traiter (`noms_de_fichiers`).
+2. Il ouvre un fichier de sortie (`exported_scripts.txt`) en mode écriture, 
+    pour stocker les informations extraites des scripts.
+3. Ensuite, pour chaque nom de fichier dans la liste, il construit le chemin complet en utilisant `os.path.join` .
+4. Dans un bloc `try-except`, le script tente d'ouvrir chaque fichier, lit son contenu, 
+    puis écrit le nom du script suivi de son contenu dans le fichier de sortie.
+5. Si un fichier n'est pas trouvé (lève une exception `FileNotFoundError`), 
+    le script affiche un message indiquant que le fichier n'a pas été trouvé dans le dossier spécifié.
+6. Le script affiche "Exportation terminée" une fois que toutes les opérations sont effectuées avec succès.
+'''
+
 import os
 
 # Dossier contenant les fichiers
