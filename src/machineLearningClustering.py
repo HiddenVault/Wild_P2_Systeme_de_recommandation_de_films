@@ -1,108 +1,82 @@
+'''
+Explications :
+1. Chargement du dataframe à partir d'un fichier CSV.
+2. Normalisation pour ajuster les valeurs pour qu'elles soient sur une échelle similaire.
+3. Clustering avec KMeans : Regroupement des films en groupes similaires en fonction de certaines caractéristiques communes. 
+    KMeans examine les caractéristiques des films et les place dans des clusters. Ici, il s'agit des groupes de films similaires.
+4. La fonction movie_recommendation permet de lancer la recommandation des films. 
+    Elle utilise le nom d'un film fourni par l'utilisateur pour trouver des films similaires dans le même cluster. 
+5. Avec le menu, l'utilisateur peut saisir le nom d'un film sans avoir à recharger le script après chaque recherche.
+'''
+
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import pairwise_distances_argmin_min
-from sklearn.pipeline import make_pipeline
-from sklearn.metrics import davies_bouldin_score
+from sklearn.metrics.pairwise import cosine_similarity
 import warnings
 
+# On ignore les avertissements
 warnings.filterwarnings("ignore")
 
-df = pd.read_csv('./data/preparation/F2_merged_data.csv', sep=',', encoding='UTF-8', low_memory=False)
+df = pd.read_csv('./data/preparation/ML_F2_merged_data.csv.csv_explore.csv', sep=',', encoding='UTF-8', low_memory=False)
 
-# Sélection des colonnes pertinentes pour le clustering
-selected_columns = ['tconst', 'TI_primaryTitle', 'TI_startYear', 'TI_runtimeMinutes',
-                     'GE_Action', 'GE_Adult', 'GE_Adventure', 'GE_Animation', 'GE_Biography', 'GE_Comedy', 
-                     'GE_Crime', 'GE_Documentary', 'GE_Drama', 'GE_Family', 'GE_Fantasy', 'GE_Film-Noir', 
-                     'GE_History', 'GE_Horror', 'GE_Music', 'GE_Musical', 'GE_Mystery', 'GE_Romance', 'GE_Sci-Fi', 
-                     'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes']
+# Sélection des colonnes numériques du DataFrame
+df_numeric = df.select_dtypes(include=['float64', 'int64'])
 
-# Création d'un DataFrame avec les colonnes sélectionnées
-df_movies = df[selected_columns]
-
-# Les valeurs manquantes sont remplacées par des zéros
-df_movies = df_movies.fillna(0)
-
-# Conversion des colonnes nécessaires en types numériques
-df_movies[['TI_startYear', 'TI_runtimeMinutes', 'RA_averageRating', 'RA_numVotes']] = df_movies[
-          ['TI_startYear', 'TI_runtimeMinutes', 'RA_averageRating', 'RA_numVotes']].apply(pd.to_numeric)
-
-# Groupement par le titre du film et agrégation des données
-df_movies_grouped = df_movies.groupby('TI_primaryTitle').agg({
-    'TI_startYear': 'mean',
-    'TI_runtimeMinutes': 'mean',
-    'RA_averageRating': 'mean',
-    'RA_numVotes': 'mean',
-}).reset_index()
-
-print("Premières lignes du DataFrame groupé :")
-print(df_movies_grouped.head())
-
-# Normalisation des données (en excluant la colonne 'cluster')
+# Normalisation des données numériques dans le but de les rendre comparables
 scaler = StandardScaler()
-df_movies_grouped_normalized = scaler.fit_transform(df_movies_grouped.drop(['TI_primaryTitle'], axis=1))
+df_numeric_normalized = scaler.fit_transform(df_numeric)
 
-# On peut utiliser KMeans
+# Utilisation de KMeans pour regrouper les films en clusters
 n_clusters = 9  # Nombre de clusters souhaité
 kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-df_movies_grouped['cluster'] = kmeans.fit_predict(df_movies_grouped_normalized)
-
-# Calcul de l'index de Davies-Bouldin. -> C'est tout simplement l'inertie.
-db_score = davies_bouldin_score(df_movies_grouped_normalized, kmeans.labels_)
-print(f"Index de Davies-Bouldin : {db_score}")
+df['cluster'] = kmeans.fit_predict(df_numeric_normalized)
 
 # Fonction pour recommander des films en fonction du nom
-def movie_recommendation(movie_name, num_recommendations=5, scaler=None):
-    matching_movies = df_movies_grouped[df_movies_grouped['TI_primaryTitle'].str.contains(movie_name, case=False, na=False)]
+def movie_recommendation(movie_name, num_recommendations=5):
+    # Recherche du film recherché
+    movie_info = df[df['TI_primaryTitle'].str.contains(movie_name, case=False, na=False)].iloc[0]
 
-    if matching_movies.empty:
-        print("Aucun film trouvé avec le titre partiel fourni.")
-        return pd.DataFrame()  # Pour retourner un DataFrame vide si aucun film n'est trouvé
-
-    # Recherche des correspondances partielles dans les titres
-    movie_info = matching_movies.iloc[0]
-
-    # Utilisation du même scaler
-    if scaler is None:
-        raise ValueError("Scaler requit pour la normalisation.")
-    
-    movie_info_normalized = scaler.transform([movie_info.drop(['TI_primaryTitle', 'cluster'])])
-
-    # Prédiction du cluster pour le film donné
-    movie_cluster = kmeans.predict(movie_info_normalized)[0]
+    # Prédiction du cluster auquel le film appartient
+    movie_data_normalized = scaler.transform(movie_info[df_numeric.columns].values.reshape(1, -1))
+    movie_cluster = kmeans.predict(movie_data_normalized)[0]
     print("Cluster prédit :", movie_cluster)
 
-    # Normalisation des données du film recherché
-    movie_data = scaler.transform([movie_info.drop(['TI_primaryTitle', 'cluster'])])
-
     # Sélection des films du même cluster
-    cluster_movies = df_movies_grouped[df_movies_grouped['cluster'] == movie_cluster]
+    cluster_movies = df[df['cluster'] == movie_cluster].reset_index(drop=True)[['TI_primaryTitle'] + list(df_numeric.columns)]
+    
+    # Exclusion du film à l'origine de la recommandation
+    cluster_movies = cluster_movies[cluster_movies['TI_primaryTitle'] != movie_info['TI_primaryTitle']]
+    
+    # Calcul des similarités avec les autres films du cluster
+    similarities = cosine_similarity(movie_data_normalized, scaler.transform(cluster_movies.drop(['TI_primaryTitle'], axis=1)))
+    recommended_movies_indices = similarities.argsort(axis=1)[:, ::-1][0][:num_recommendations]
+    recommended_movies = cluster_movies.iloc[recommended_movies_indices][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
 
+    # Affichage des informations sur les films du cluster
     print("Films du cluster :")
     print(cluster_movies)
 
-    # Exclusion du film à l'origine de la recommandation
-    cluster_movies = cluster_movies[cluster_movies['TI_primaryTitle'] != movie_name]
+    # Affichage des similarités avec les films du cluster
+    print("Similarités avec les films du cluster :")
+    print(similarities)
 
-    # Films les plus proches en termes de genres et de popularité
-    distances = pairwise_distances_argmin_min(movie_data, 
-                                           cluster_movies.drop(['TI_primaryTitle', 'cluster'], axis=1),
-                                           metric='cosine')  # Utilisation de la distance cosinus pour la similarité
-
-    recommended_movies_indices = distances[0]
-    recommended_movies = cluster_movies.iloc[recommended_movies_indices][:num_recommendations][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
+    # Afficher le titre du film saisi
+    print("Titre du film saisi :", movie_info['TI_primaryTitle'])
 
     return recommended_movies
 
-# Menu avec boucle while
+# Menu (pour éviter d'avoir à relancer le script)
 while True:
     user_input = input("Entrez le nom du film (ou 'quitter' pour sortir) : ")
-    
+
     if user_input.lower() == 'quitter':
-        break  # Quitter la boucle si l'utilisateur saisit "quitter"
-    
-    recommended_movies = movie_recommendation(user_input, scaler=scaler)
-    
+        break  # Pour quitter le menu
+
+    # Recommandations pour le film saisi
+    recommended_movies = movie_recommendation(user_input)
+
+    # Affichage des recommandations
     if recommended_movies.empty:
         print("Aucun film recommandé.")
     else:

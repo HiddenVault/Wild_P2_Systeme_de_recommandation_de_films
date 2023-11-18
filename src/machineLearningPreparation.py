@@ -20,11 +20,11 @@ import re
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-   'complementaire_tmdb_full.csv': ('./data/sources', ',', -1, 13, 14, 15)
+   'F2_merged_data.csv': ('./data/preparation/', ',', -1, 10, 10, 10)
 }
 
 # Préfixe pour les fichiers HTML et CSV
-file_prefix = 'P_'
+file_prefix = 'ML_'
 
 # Début du chronomètre
 import time
@@ -47,29 +47,28 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             # Création d'une copie du DataFrame original pour les manipulations
             df_copy = df_original.copy()
 
-            # Remplacement des retours à la ligne indésirables dans les champs de texte
-            df_copy = df_copy.applymap(lambda x: x.replace('\n', '') if isinstance(x, str) else x)
+            selected_columns = ['tconst', 'TI_primaryTitle', 'TI_startYear', 'TI_runtimeMinutes',
+                                 'GE_Action', 'GE_Adult', 'GE_Adventure', 'GE_Animation', 'GE_Biography', 'GE_Comedy', 
+                                 'GE_Crime', 'GE_Documentary', 'GE_Drama', 'GE_Family', 'GE_Fantasy', 'GE_Film-Noir', 
+                                 'GE_History', 'GE_Horror', 'GE_Music', 'GE_Musical', 'GE_Mystery', 'GE_Romance', 'GE_Sci-Fi', 
+                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes']
 
-            # Remplacemenent de toutes les occurrences de "NaN" par None dans le DataFrame
-            df_copy = df_copy.replace(np.nan, None)
+            # Remplacer les valeurs NaN dans la colonne 'TI_runtimeMinutes' par 0
+            df_copy['TI_runtimeMinutes'] = df_copy['TI_runtimeMinutes'].fillna(0)
 
-            # Renommage de la colonne 'imdb_id' en 'tconst'
-            df_copy = df_copy.rename(columns={'imdb_id': 'tconst'})
+            df_copy = df_copy[selected_columns]
 
-            # Fonction pour ajouter un préfixe à la colonne 'poster_path'
-            def add_prefix(path):
-                if path is not None:
-                    return 'https://image.tmdb.org/t/p/original' + str(path)
-                return None
+            df_copy = df_copy.groupby('tconst').agg({
+                'TI_primaryTitle': 'first',  # Utilisation de 'first' pour conserver la première valeur
+                **{col: 'max' for col in df_copy.columns if col.startswith('GE_')},
+                'TI_startYear': 'mean',
+                'TI_runtimeMinutes': 'mean',
+                'RA_averageRating': 'mean',
+                'RA_numVotes': 'mean'
+            }).reset_index()
 
-            df_copy['poster_path'] = df_copy['poster_path'].apply(add_prefix)
-
-            # Remplacer les valeurs NaN dans la colonne 'runtimeMinutes' par 0
-            df_copy['col1'] = df_copy['runtimeMinutes'].fillna(0)
-
-            # Suppression des colonnes indiquées
-            columns_to_drop = ['adult', 'genres','homepage','id','original_language','original_title','release_date','title','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','video','vote_average','vote_count']
-            df_copy = df_copy.drop(columns=columns_to_drop)
+            nombre_nan_par_colonne = df_copy.isna().sum()
+            print(nombre_nan_par_colonne)
 
             # Réinitialiser les index si nécessaire
             # df_copy.reset_index(drop=True, inplace=True)
@@ -85,7 +84,7 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             local_file_path = f'./data/preparation/{html_file_name}'  # Déclaration de local_file_path
             
             # Fonction pour créer un fichier HTML à partir du DataFrame
-            modulePreparationHTML.create_html_file(df_copy, html_file_name, nrows_value, start_time, files_dict, local_file_path, file_prefix='P_')
+            #modulePreparationHTML.create_html_file(df_copy, html_file_name, nrows_value, start_time, files_dict, local_file_path, file_prefix='P_')
 
             # Fonction pour obtenir les informations du DataFrame
             moduleDataframe.get_dataframe_info(df_copy)
