@@ -3,9 +3,13 @@ Explications :
 1. Chargement du dataframe à partir d'un fichier CSV.
 2. Normalisation pour ajuster les valeurs pour qu'elles soient sur une échelle similaire.
 3. Clustering avec KMeans : Regroupement des films en groupes similaires en fonction de certaines caractéristiques communes. 
-    KMeans examine les caractéristiques des films et les place dans des clusters. Ici, il s'agit des groupes de films similaires.
-4. La fonction movie_recommendation permet de lancer la recommandation des films. 
-    Elle utilise le nom d'un film fourni par l'utilisateur pour trouver des films similaires dans le même cluster. 
+    KMeans examine les caractéristiques des films et les place dans des clusters qui regroupe des films similaires.
+4. La fonction movie_recommendation :
+    prend en entrée le nom d'un film, 
+    recherche le film dans le DataFrame, 
+    normalise ses données, 
+    utilise Kmeans pour trouver les films les plus proches dans le cluster, 
+    recommande d'autres films similaires.     
 5. Avec le menu, l'utilisateur peut saisir le nom d'un film sans avoir à recharger le script après chaque recherche.
 '''
 
