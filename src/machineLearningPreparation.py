@@ -60,6 +60,13 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
 
             df_copy = df_copy.groupby('tconst').agg({
                 'TI_primaryTitle': 'first',  # Utilisation de 'first' pour conserver la première valeur
+                # ** signifie que le dictionnaire résultant va contenir plusieurs éléments, 
+                # où chaque élément correspond à une colonne dont le nom commence par 'GE_', 
+                # et la valeur associée à chaque colonne est définie à 'max'
+                # Sans **, on ne pourrait créer qu'un seul élément clé-valeur dans le dictionnaire
+                # ** est utilisé ici pour étendre les éléments d'un dictionnaire lors de la création d'un nouveau dictionnaire, 
+                # Cela facilite l'ajout de plusieurs éléments en une seule ligne de code.
+                # On parle de déballage.
                 **{col: 'max' for col in df_copy.columns if col.startswith('GE_')},
                 'TI_startYear': 'mean',
                 'TI_runtimeMinutes': 'mean',

@@ -53,8 +53,25 @@ def movie_recommendation(movie_name, num_recommendations=5):
     cluster_movies = cluster_movies[cluster_movies['TI_primaryTitle'] != movie_info['TI_primaryTitle']]
     
     # Calcul des similarités avec les autres films du cluster
+    # cosine_similarity mesure la similitude entre les caractéristiques normalisées des films.
+    # scaler.transform(bla bla): 
+    #   Application de la  normalisation sur ces données. On cherche à ajuster des valeurs pour qu'elles soient sur une échelle similaire.
+    # On crée Une matrice de similarités entre le film spécifié et tous les films dans le cluster
     similarities = cosine_similarity(movie_data_normalized, scaler.transform(cluster_movies.drop(['TI_primaryTitle'], axis=1)))
+    # similarities.argsort(axis=1) : 
+    #   Renvoie les indices qui trie chaque ligne de la matrice de similarités (les moins similaires au plus similaires).
+    # [:, ::-1] : 
+    #   Inversion par ordre décroissant de similiraté de l'ordre des indices dans chaque ligne
+    #       Les indices les plus élevés (les films les plus similaires) sont maintenant à gauche de chaque ligne.
+    # [0] : 
+    #   Sélection de la première ligne de la matrice (On a un seul film spécifié). 
+    #       Elle contient les indices triés par ordre décroissant de similarité.
+    # [:num_recommendations] : 
+    #   Prend les premiers indices des films les plus similaires jusqu'à un nombre spécifié dans num_recommendations.
     recommended_movies_indices = similarities.argsort(axis=1)[:, ::-1][0][:num_recommendations]
+    # cluster_movies.iloc[recommended_movies_indices] : 
+    #   Sélection des lignes du DataFrame cluster_movies en utilisant les indices des films recommandés (similarities).
+    #   Ensuite, on sélectionne les colonnes du DataFrame 
     recommended_movies = cluster_movies.iloc[recommended_movies_indices][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
 
     # Affichage des informations sur les films du cluster
