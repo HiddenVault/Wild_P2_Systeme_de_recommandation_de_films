@@ -51,10 +51,8 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                                  'GE_Action', 'GE_Adult', 'GE_Adventure', 'GE_Animation', 'GE_Biography', 'GE_Comedy', 
                                  'GE_Crime', 'GE_Documentary', 'GE_Drama', 'GE_Family', 'GE_Fantasy', 'GE_Film-Noir', 
                                  'GE_History', 'GE_Horror', 'GE_Music', 'GE_Musical', 'GE_Mystery', 'GE_Romance', 'GE_Sci-Fi', 
-                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes']
-
-            # Remplacer les valeurs NaN dans la colonne 'TI_runtimeMinutes' par 0
-            df_copy['TI_runtimeMinutes'] = df_copy['TI_runtimeMinutes'].fillna(0)
+                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes'
+                                 'budget', 'poster_path', '']
 
             df_copy = df_copy[selected_columns]
 

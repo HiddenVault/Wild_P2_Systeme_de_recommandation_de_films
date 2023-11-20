@@ -49,6 +49,9 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             # Remplacement de toutes les occurrences de "\\N" par NaN dans le DataFrame en utilisant un caractère d'échappement
             df_copy = df_copy.replace({'\\N': np.nan})
 
+            # Remplacer les valeurs NaN dans la colonne 'TI_runtimeMinutes' par 0
+            df_copy['TI_runtimeMinutes'] = df_copy['TI_runtimeMinutes'].fillna(0)
+
             # Création de colonnes de valeurs dummies pour 'genres'
             dummies = df_copy['genres'].str.get_dummies(sep=',')
             df_copy = pd.concat([df_copy, dummies], axis=1)

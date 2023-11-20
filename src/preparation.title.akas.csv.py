@@ -47,8 +47,14 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             # Filtrer les lignes avec "isOriginalTitle" égale à 1
             df_copy = df_copy[df_copy['isOriginalTitle'] == '1']
 
+            # Suppression des lignes 'XWW' dans la colonne 'region' 
+            df_copy = df_copy[df_copy['region'] != 'XWW']
+
+            # Suppression des lignes '\N' dans la colonne 'language'
+            df_copy.drop(df_copy[df_copy['language'] == '\\N'].index, inplace=True)
+
             # Suppression des colonnes indiquées
-            columns_to_drop = ['ordering', 'attributes', 'types', 'language','region','isOriginalTitle']
+            columns_to_drop = ['ordering', 'attributes', 'types', 'region','isOriginalTitle']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Renommage de la colonne 'titleId' en 'tconst'

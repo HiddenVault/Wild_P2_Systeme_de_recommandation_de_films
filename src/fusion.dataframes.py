@@ -57,7 +57,7 @@ for file_name, (directory, separator, lines, *_) in files_dict.items():
         print(f"Erreur lors de la lecture de {file_name}: {e}")
 
 # Fichier de sortie
-output_filename = f"{file_prefix}merged_data.csv"
+output_filename = f"{file_prefix}merged_data_v3.csv"
 
 # Chemin complet du fichier de sortie en utilisant os.path.join
 output_file_path = os.path.join(directory, output_filename)
