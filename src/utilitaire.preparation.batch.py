@@ -12,15 +12,15 @@ import subprocess
 
 # Dictionnaire définissant les scripts à traiter avec leurs propriétés associées
 files_to_process = {
-    "./preparation.complementaire_tmdb_full.csv.py": {"process": True, "execution_mode": "run", "order": 1},
-    "./preparation.name.basics.csv.py": {"process": True, "execution_mode": "run", "order": 2},
-    "./preparation.title.akas.csv.py": {"process": True, "execution_mode": "run", "order": 3},
-    "./preparation.title.basics.csv.py": {"process": True, "execution_mode": "run", "order": 4},
-    "./preparation.title.crew.csv.py": {"process": True, "execution_mode": "run", "order": 5},
-    "./preparation.title.episode.csv.py": {"process": True, "execution_mode": "run", "order": 6},
-    "./preparation.titles.principals.csv.py": {"process": True, "execution_mode": "run", "order": 7},
-    "./preparation.title.ratings.csv.py": {"process": True, "execution_mode": "run", "order": 8},
-    "./fusion.dataframes.py": {"process": True, "execution_mode": "run", "order": 9}
+    "./src/preparation.complementaire_tmdb_full.csv.py": {"process": True, "execution_mode": "run", "order": 1},
+    "./src/preparation.name.basics.csv.py": {"process": True, "execution_mode": "run", "order": 2},
+    "./src/preparation.title.akas.csv.py": {"process": True, "execution_mode": "run", "order": 3},
+    "./src/preparation.title.basics.csv.py": {"process": True, "execution_mode": "run", "order": 4},
+    "./src/preparation.title.crew.csv.py": {"process": True, "execution_mode": "run", "order": 5},
+    "./src/preparation.title.episode.csv.py": {"process": True, "execution_mode": "run", "order": 6},
+    "./src/preparation.titles.principals.csv.py": {"process": True, "execution_mode": "run", "order": 7},
+    "./src/preparation.title.ratings.csv.py": {"process": True, "execution_mode": "run", "order": 8},
+    "./src/fusion.dataframes.py": {"process": True, "execution_mode": "run", "order": 9}
 }
 
 # Triage des scripts en fonction de leur numéro d'ordre.

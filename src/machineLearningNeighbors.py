@@ -43,7 +43,12 @@ neighbors_model.fit(df_numeric_normalized)
 # Fonction pour recommander des films en fonction du nom
 def movie_recommendation(movie_name):
     # Recherche du film recherché
-    movie_info = df[df['TI_primaryTitle'].str.contains(movie_name, case=False, na=False)].iloc[0]
+    try:
+        # Recherche du film recherché
+        movie_info = df[df['TI_primaryTitle'].str.contains(movie_name, case=False, na=False)].iloc[0]
+    except IndexError:
+        print(f"Aucun film trouvé avec la correspondance '{movie_name}'. Veuillez réessayer.")
+        return pd.DataFrame()  # Retourner un DataFrame vide en cas d'erreur
 
     # Normalisation des données du film recherché
     # movie_info[df_numeric.columns]: Extraction des données numériques du film spécifique à partir du DataFrame df (qui contient les informations sur plusieurs films).

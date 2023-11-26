@@ -21,14 +21,14 @@ import time
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes à générer dans les fichiers csv et html
 files_dict = {
-    'title.akas.tsv': ('./data/sources', '\t', 1000, 10, 11, 12),
-    'complementaire_tmdb_full.csv': ('./data/sources', ',', 1000, 13, 14, 15),
-    'title.ratings.tsv': ('./data/sources', '\t', 500, 16, 17, 18),
-    'title.principals.tsv': ('./data/sources', '\t', 800, 19, 20, 21),
-    'title.episode.tsv': ('./data/sources', '\t', 300, 22, 23, 24),
-    'title.crew.tsv': ('./data/sources', '\t', 700, 25, 26, 27),
-    'title.basics.tsv': ('./data/sources', '\t', 1200, 28, 29, 30),
-    'name.basics.tsv': ('./data/sources', '\t', 900, 31, 32, 33),
+    'title.akas.tsv': ('./src/data/sources', '\t', 1000, 20, 20, 20),
+    'complementaire_tmdb_full.csv': ('./src/data/sources', ',', 1000, 20, 20, 20),
+    'title.ratings.tsv': ('./src/data/sources', '\t', 1000, 20, 20, 20),
+    'title.principals.tsv': ('./src/data/sources', '\t', 1000, 20, 20, 20),
+    'title.episode.tsv': ('./src/data/sources', '\t', 1000, 20, 23, 20),
+    'title.crew.tsv': ('./src/data/sources', '\t', 1000, 20, 20, 20),
+    'title.basics.tsv': ('./src/data/sources', '\t', 1000, 20, 20, 20),
+    'name.basics.tsv': ('./src/data/sources', '\t', 1000, 20, 20, 20),
 }
 
 # Préfixe pour les noms de fichiers HTML et CSV

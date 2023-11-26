@@ -22,8 +22,8 @@ df = pd.read_csv(link, sep=',', encoding='UTF-8', low_memory=False)
 
 # Sélectionner les colonnes pour chaque catégorie et ajouter les préfixes correspondants
 selected_columns_ge = ['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western']
-selected_columns_ti = ['titleType', 'primaryTitle', 'startYear', 'runtimeMinutes', 'poster_path', 'tagline', 'overview','language','budget']
-selected_columns_pe = ['primaryName', 'nconst_tp', 'nconst_nb', 'directors', 'writers']
+selected_columns_ti = ['titleType', 'primaryTitle', 'startYear', 'runtimeMinutes', 'poster_path', 'tagline', 'overview','language','budget','revenue','production_companies_name','region']
+selected_columns_pe = ['primaryName', 'nconst_tp', 'nconst_nb', 'directors', 'writers','birthYear','deathYear']
 selected_columns_pk = ['category', 'actor', 'actress', 'animation_department', 'art_department', 'art_director', 'assistant', 'assistant_director', 'camera_department', 'casting_department', 'casting_director', 'cinematographer', 'composer', 'costume_department', 'costume_designer', 'director', 'editor', 'editorial_department', 'electrical_department', 'executive', 'legal', 'location_management', 'make_up_department', 'manager', 'miscellaneous', 'music_artist', 'music_department', 'podcaster', 'producer', 'production_department', 'production_designer', 'production_manager', 'publicist', 'script_department', 'set_decorator', 'sound_department', 'soundtrack', 'special_effects', 'stunts', 'talent_agent', 'transportation_department', 'visual_effects', 'writer']
 selected_columns_ra = ['popularity', 'title', 'averageRating', 'numVotes']
 
@@ -42,4 +42,4 @@ df.rename(columns=lambda x: prefix_ge + x if x in selected_columns_ge else
                           prefix_ra + x if x in selected_columns_ra else x, inplace=True)
 
 # Enregistrer le DataFrame final en tant que fichier CSV
-df.to_csv('./data/preparation/F2_merged_data.csv', index=False, encoding='UTF-8')
+df.to_csv('./data/preparation/F2_merged_data_v3.csv', index=False, encoding='UTF-8')

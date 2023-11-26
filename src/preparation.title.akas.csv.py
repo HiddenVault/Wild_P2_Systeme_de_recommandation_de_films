@@ -17,7 +17,7 @@ import pandas as pd
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.akas.tsv': ('./data/sources', '\t', -1, 100, 100, 100)
+    'title.akas.tsv': ('./src/data/sources', '\t', -1, 10, 10, 10)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -45,16 +45,24 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             df_copy = df_original.copy()
 
             # Filtrer les lignes avec "isOriginalTitle" égale à 1
-            df_copy = df_copy[df_copy['isOriginalTitle'] == '1']
+            df_copy = df_copy[df_copy['isOriginalTitle'] == '0']
+
+            # Filtrer les lignes avec "isOriginalTitle" égale à 1
+            #df_copy = df_copy[df_copy['language'].isin(['FR', 'EN'])]
+            df_copy = df_copy[df_copy['language'].str.upper().isin(['FR', 'US', 'GB', 'CA','BE'])]
+            # df_copy = df_copy[df_copy['region'].str.upper().isin(['FR', 'US', 'GB', 'CA'])]
+
+            #df_copy = df_copy[df_copy['region'].isin(['FR', 'EN'])]         
 
             # Suppression des lignes 'XWW' dans la colonne 'region' 
-            df_copy = df_copy[df_copy['region'] != 'XWW']
+            #df_copy = df_copy[df_copy['region'] != 'XWW']
 
             # Suppression des lignes '\N' dans la colonne 'language'
-            df_copy.drop(df_copy[df_copy['language'] == '\\N'].index, inplace=True)
+            #df_copy.drop(df_copy[df_copy['language'] == '\\N'].index, inplace=True)
+            #df_copy = df_copy[df_copy['language'] != '\\N']
 
             # Suppression des colonnes indiquées
-            columns_to_drop = ['ordering', 'attributes', 'types', 'region','isOriginalTitle']
+            columns_to_drop = ['ordering', 'attributes', 'types','isOriginalTitle']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Renommage de la colonne 'titleId' en 'tconst'

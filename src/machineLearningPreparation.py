@@ -20,7 +20,7 @@ import re
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-   'F2_merged_data.csv': ('./data/preparation/', ',', -1, 10, 10, 10)
+   'F2_merged_data_v3.csv': ('./data/preparation/', ',', -1, 10, 10, 10)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -51,10 +51,22 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                                  'GE_Action', 'GE_Adult', 'GE_Adventure', 'GE_Animation', 'GE_Biography', 'GE_Comedy', 
                                  'GE_Crime', 'GE_Documentary', 'GE_Drama', 'GE_Family', 'GE_Fantasy', 'GE_Film-Noir', 
                                  'GE_History', 'GE_Horror', 'GE_Music', 'GE_Musical', 'GE_Mystery', 'GE_Romance', 'GE_Sci-Fi', 
-                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes'
-                                 'budget', 'poster_path', '']
+                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes',
+                                 'TI_budget', 'TI_poster_path', 'TI_region','TI_language','TI_revenue','TI_production_companies_name']
 
             df_copy = df_copy[selected_columns]
+
+            # Jointure pour concaténer les valeurs uniques
+            def join_strings(series):
+                unique_values = set(series)
+                return ', '.join(unique_values)
+            
+            # Jointure pour concaténer les valeurs uniques
+            def join_strings2(series):
+                unique_values = set(series)
+                # Convertir chaque élément en chaîne de caractères
+                str_values = [str(value) for value in unique_values]
+                return ', '.join(str_values)
 
             df_copy = df_copy.groupby('tconst').agg({
                 'TI_primaryTitle': 'first',  # Utilisation de 'first' pour conserver la première valeur
@@ -69,7 +81,13 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                 'TI_startYear': 'mean',
                 'TI_runtimeMinutes': 'mean',
                 'RA_averageRating': 'mean',
-                'RA_numVotes': 'mean'
+                'RA_numVotes': 'mean',
+                'TI_budget' : 'mean', 
+                'TI_revenue' : 'mean',
+                'TI_poster_path' : 'first',
+                'TI_production_companies_name' : join_strings2,
+                'TI_region' : join_strings,
+                'TI_language' : join_strings
             }).reset_index()
 
             nombre_nan_par_colonne = df_copy.isna().sum()

@@ -17,10 +17,11 @@ import time
 import pandas as pd
 import numpy as np
 import re
+import ast
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-   'complementaire_tmdb_full.csv': ('./data/sources', ',', -1, 13, 14, 15)
+   'complementaire_tmdb_full.csv': ('./src/data/sources', ',', -1, 13, 14, 15)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -64,11 +65,14 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
 
             df_copy['poster_path'] = df_copy['poster_path'].apply(add_prefix)
 
-            # Remplacer les valeurs NaN dans la colonne 'runtimeMinutes' par 0
-            df_copy['col1'] = df_copy['runtimeMinutes'].fillna(0)
+            df_copy['poster_path'].fillna(value=np.nan, inplace=True)
+
+            df_copy['production_companies_name'] = df_copy['production_companies_name'].apply(ast.literal_eval)
+            df_copy = df_copy.explode('production_companies_name')
+            df_copy['production_companies_name'] = df_copy['production_companies_name'].astype(str)
 
             # Suppression des colonnes indiquées
-            columns_to_drop = ['adult', 'genres','homepage','id','original_language','original_title','release_date','title','runtime','status','production_countries','spoken_languages','production_companies_name','production_companies_country','backdrop_path','video','vote_average','vote_count']
+            columns_to_drop = ['adult', 'genres','homepage','id','original_language','original_title','release_date','title','runtime','status','production_countries','spoken_languages','production_companies_country','backdrop_path','video','vote_average','vote_count']
             df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Réinitialiser les index si nécessaire

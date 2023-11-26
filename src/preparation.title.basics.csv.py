@@ -19,7 +19,7 @@ import numpy as np
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.basics.tsv': ('./data/sources', '\t', -1, 28, 29, 30)
+    'title.basics.tsv': ('./src/data/sources', '\t', -1, 28, 29, 30)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -50,7 +50,7 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             df_copy = df_copy.replace({'\\N': np.nan})
 
             # Remplacer les valeurs NaN dans la colonne 'TI_runtimeMinutes' par 0
-            df_copy['TI_runtimeMinutes'] = df_copy['TI_runtimeMinutes'].fillna(0)
+            df_copy['runtimeMinutes'] = df_copy['runtimeMinutes'].fillna(0)
 
             # Création de colonnes de valeurs dummies pour 'genres'
             dummies = df_copy['genres'].str.get_dummies(sep=',')
@@ -65,7 +65,8 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
 
             # Suppression des lignes où 'startYear' n'est pas compris entre 2019 (inclus) et 2024 (non inclus)
             df_copy['startYear'] = pd.to_numeric(df_copy['startYear'], errors='coerce').astype('Int64')
-            df_copy['startYear'] = df_copy['startYear'].astype(int)
+            #df_copy['startYear'] = df_copy['startYear'].astype(int)
+            df_copy['startYear'] = df_copy['startYear'].fillna(0).astype(int)
             df_copy = df_copy[(df_copy['startYear'] >= 2019) & (df_copy['startYear'] < 2024)]
 
             # Suppression des lignes où 'runtimeMinutes' est inférieur à 60

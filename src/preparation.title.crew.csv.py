@@ -20,7 +20,7 @@ import ast
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.crew.tsv': ('./data/sources', '\t', -1, 25, 26, 27)
+    'title.crew.tsv': ('./src/data/sources', '\t', -1, 25, 26, 27)
 }
 
 # Préfixe pour les fichiers HTML et CSV

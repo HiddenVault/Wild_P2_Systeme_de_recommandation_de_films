@@ -19,7 +19,7 @@ import numpy as np
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'title.principals.tsv': ('./data/sources', '\t', -1, 19, 20, 21)
+    'title.principals.tsv': ('./src/data/sources', '\t', -1, 19, 20, 21)
 }
 
 # Préfixe pour les fichiers HTML et CSV

@@ -18,7 +18,7 @@ import pandas as pd
 
 # Dictionnaire avec les noms des fichiers, leurs emplacements, leur type de séparateur et le nombre de lignes
 files_dict = {
-    'name.basics.tsv': ('./data/sources', '\t', -1, 31, 32, 33)
+    'name.basics.tsv': ('./src/data/sources', '\t', -1, 31, 32, 33)
 }
 
 # Préfixe pour les fichiers HTML et CSV
@@ -47,17 +47,20 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
 
             # Conversion de la colonne 'birthYear' en numérique en gérant les erreurs
             df_copy['birthYear'] = pd.to_numeric(df_copy['birthYear'], errors='coerce')
+
+            # Conversion de la colonne 'birthYear' en numérique en gérant les erreurs
+            df_copy['deathYear'] = pd.to_numeric(df_copy['deathYear'], errors='coerce')
             
             # Remplacement des valeurs NaN par 0
-            df_copy['birthYear'].fillna(0, inplace=True)
+            df_copy[['birthYear','deathYear']].fillna(0, inplace=True)
             
             # Filtrage des dates de naissance supérieures à 1920 ou égales à 0
             df_copy = df_copy[(df_copy['birthYear'] >= 1920)]
             #df_copy = df_copy[(df_copy['birthYear'] >= 1920) | (df_copy['birthYear'] == 0)] # Trop gourmand en ressources
 
             # Suppression des colonnes indiquées
-            columns_to_drop = ['birthYear', 'deathYear']
-            df_copy = df_copy.drop(columns=columns_to_drop)
+            #columns_to_drop = ['birthYear', 'deathYear']
+            #df_copy = df_copy.drop(columns=columns_to_drop)
 
             # Création des colonnes de valeurs dummies pour 'primaryProfession'
             dummies = df_copy['primaryProfession'].str.get_dummies(sep=',')
