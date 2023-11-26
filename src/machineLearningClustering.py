@@ -24,7 +24,14 @@ import warnings
 # On ignore les avertissements
 warnings.filterwarnings("ignore")
 
-df = pd.read_csv('./src/data/preparation/ML_F2_merged_data.csv.csv_explore.csv', sep=',', encoding='UTF-8', low_memory=False)
+df = pd.read_csv('./src/data/preparation/ML_F2_merged_data_v3.csv.csv_explore.csv', sep=',', encoding='UTF-8', low_memory=False)
+
+# Voir s'il est utile de dimensionner la largeur du dataframe et de ses colonnes
+# Définition de la largeur d'affichage maximale
+pd.set_option('display.width', None)
+
+# Définition de la largeur d'affichage maximale pour une colonne
+pd.set_option('display.max_colwidth', None)
 
 # Sélection des colonnes numériques du DataFrame
 df_numeric = df.select_dtypes(include=['float64', 'int64'])
@@ -75,7 +82,7 @@ def movie_recommendation(movie_name):
                     else:
                         # Si l'utilisateur saisit 0
                         print("Vous avez sélectionné 0. Veuillez entrer un numéro valide.")
-                        # Est-il utile de continuer la boucle pour redemander à l'utilisateur de saisir un numéro valide
+                        # Est-il utile de continuer la boucle pour redemander à l'utilisateur de saisir un numéro valide ?
                     break
                 else:
                     print("Veuillez entrer un numéro valide.")
@@ -112,8 +119,15 @@ def movie_recommendation(movie_name):
         neighbor_indices = neighbor_indices[0][1:]
 
         # Sélection des films recommandés
-        recommended_movies = df.iloc[neighbor_indices][['TI_primaryTitle', 'RA_averageRating', 'RA_numVotes']]
-
+        # Liste des colonnes disponibles
+        # 'TI_startYear', 'TI_runtimeMinutes', 'RA_averageRating', 'RA_numVotes', 
+        # 'TI_budget', 'TI_revenue', 'TI_poster_path', 'TI_production_companies_name', 
+        # 'TI_region', 'TI_language'
+        recommended_movies = df.iloc[neighbor_indices][['TI_primaryTitle', 'TI_startYear', 'TI_budget', \
+                                                        'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes',  \
+                                                        'RA_numVotes', 'TI_region', 'TI_language', \
+                                                        'TI_production_companies_name', 'TI_poster_path']]
+        
         # Afficher le titre du film saisi
         print("Titre du film saisi :", selected_movie_info['TI_primaryTitle'])
 
