@@ -1,0 +1,501 @@
+Nom,Prénom,Statut,Âge,Enfants,Propriétaire,Profession,Salaire Annuel (€)
+Bernard,Anne,Marié,20,2,Non,Commercial,40177
+Petit,Pierre,Non Marié,61,3,Oui,Avocat,44259
+Moreau,François,Non Marié,56,0,Oui,Infirmier,39127
+Lefebvre,Nathalie,Non Marié,24,3,Non,Ingénieur,37460
+Michel,Jean,Non Marié,52,2,Oui,Technicien,32957
+Petit,Marie,Non Marié,30,3,Oui,Avocat,44613
+Lefebvre,Étienne,Non Marié,49,5,Oui,Architecte,37394
+Leroy,Julie,Marié,53,5,Non,Technicien,36237
+Lefebvre,Claire,Non Marié,50,1,Non,Comptable,32434
+Martin,Julie,Non Marié,60,3,Oui,Artisan,21275
+Laurent,Sophie,Marié,55,4,Oui,Comptable,44437
+Lefebvre,Claire,Marié,20,1,Oui,Ingénieur,66474
+Petit,François,Non Marié,36,4,Non,Technicien,26591
+Petit,François,Non Marié,27,5,Oui,Médecin,72685
+Simon,Étienne,Marié,57,5,Oui,Médecin,51929
+Petit,Sophie,Marié,64,3,Oui,Ingénieur,42979
+Martin,Nathalie,Non Marié,49,3,Oui,Ingénieur,62240
+Moreau,Marie,Non Marié,57,5,Non,Commercial,40951
+Martin,Julie,Marié,42,2,Non,Architecte,57052
+Laurent,Julie,Non Marié,21,5,Non,Enseignant,44950
+Petit,Julie,Non Marié,50,3,Non,Avocat,35821
+Dupont,Pierre,Non Marié,25,3,Oui,Artisan,30712
+Dupont,Sophie,Non Marié,60,0,Non,Architecte,45387
+Leroy,Étienne,Non Marié,43,2,Non,Commercial,46906
+Petit,Julie,Marié,63,0,Non,Enseignant,37369
+Moreau,Pierre,Marié,59,0,Non,Technicien,28664
+Moreau,Pierre,Non Marié,23,5,Non,Comptable,28032
+Moreau,Marie,Marié,45,2,Oui,Infirmier,44310
+Simon,Sophie,Marié,56,4,Non,Commercial,28685
+Simon,Jean,Marié,45,3,Oui,Ingénieur,59699
+Simon,Pierre,Marié,42,4,Non,Technicien,35117
+Simon,Marie,Marié,43,0,Oui,Comptable,38685
+Michel,Pierre,Marié,57,5,Oui,Architecte,38418
+Simon,Julie,Non Marié,37,5,Non,Technicien,37618
+Dupont,Jean,Marié,35,3,Oui,Comptable,28101
+Bernard,Claire,Non Marié,41,3,Oui,Comptable,26012
+Simon,Étienne,Non Marié,30,5,Oui,Médecin,57043
+Leroy,Étienne,Non Marié,20,4,Non,Artisan,26240
+Moreau,Jean,Marié,42,2,Non,Ingénieur,50547
+Laurent,Claire,Non Marié,40,4,Oui,Enseignant,38799
+Lefebvre,Pierre,Marié,47,3,Non,Avocat,45991
+Lefebvre,Claire,Non Marié,36,1,Oui,Commercial,49881
+Dupont,Pierre,Marié,64,1,Oui,Commercial,50023
+Michel,Marie,Non Marié,34,2,Oui,Médecin,65497
+Moreau,Jean,Marié,58,4,Oui,Ingénieur,36306
+Petit,Jean,Marié,62,5,Oui,Commercial,37421
+Dupont,Jean,Marié,26,0,Non,Architecte,47257
+Simon,Pierre,Marié,38,1,Non,Commercial,38731
+Laurent,Pierre,Non Marié,60,1,Non,Architecte,46362
+Michel,Claire,Marié,44,5,Non,Commercial,35332
+Bernard,Julie,Marié,61,1,Oui,Architecte,56565
+Simon,François,Marié,27,3,Oui,Commercial,37047
+Moreau,François,Marié,46,3,Oui,Architecte,55027
+Martin,Pierre,Non Marié,35,0,Non,Avocat,31191
+Simon,François,Non Marié,28,5,Non,Commercial,54351
+Lefebvre,Étienne,Non Marié,46,0,Non,Enseignant,32939
+Simon,Étienne,Non Marié,26,3,Non,Infirmier,41160
+Michel,Nathalie,Marié,22,2,Non,Médecin,65262
+Simon,Pierre,Marié,54,4,Non,Comptable,41929
+Dupont,Anne,Non Marié,62,4,Oui,Comptable,44245
+Petit,Étienne,Non Marié,24,1,Oui,Enseignant,39466
+Laurent,François,Marié,28,5,Oui,Architecte,48203
+Michel,Claire,Non Marié,37,2,Oui,Infirmier,43429
+Michel,Nathalie,Marié,35,4,Non,Infirmier,36644
+Bernard,François,Marié,29,1,Non,Avocat,54643
+Leroy,François,Marié,52,4,Oui,Avocat,52710
+Lefebvre,Anne,Non Marié,59,3,Non,Comptable,30507
+Leroy,Anne,Marié,56,0,Non,Médecin,51839
+Leroy,Anne,Non Marié,25,0,Non,Ingénieur,50519
+Dupont,Nathalie,Non Marié,56,3,Non,Infirmier,24556
+Laurent,Nathalie,Non Marié,37,0,Non,Ingénieur,38487
+Lefebvre,Julie,Non Marié,54,5,Oui,Comptable,29455
+Martin,François,Non Marié,29,1,Non,Médecin,68517
+Michel,Nathalie,Marié,37,3,Oui,Infirmier,28743
+Bernard,Sophie,Marié,42,5,Non,Commercial,42040
+Laurent,Nathalie,Non Marié,33,2,Non,Architecte,42112
+Moreau,Pierre,Marié,51,4,Oui,Architecte,57844
+Bernard,Pierre,Marié,57,1,Non,Commercial,47812
+Dupont,Anne,Non Marié,39,3,Oui,Commercial,32601
+Michel,Sophie,Non Marié,22,0,Non,Artisan,38370
+Lefebvre,Jean,Marié,32,4,Non,Comptable,32180
+Petit,Sophie,Marié,60,3,Oui,Architecte,43292
+Moreau,Nathalie,Marié,51,3,Non,Ingénieur,45905
+Simon,Sophie,Non Marié,56,1,Oui,Architecte,32352
+Leroy,Sophie,Marié,60,5,Non,Enseignant,47023
+Dupont,Étienne,Marié,28,1,Oui,Comptable,35776
+Dupont,Julie,Marié,31,2,Non,Technicien,20125
+Michel,Anne,Marié,46,1,Non,Artisan,23267
+Laurent,Jean,Marié,57,1,Non,Comptable,28263
+Michel,Jean,Non Marié,53,5,Oui,Comptable,48984
+Martin,Étienne,Non Marié,46,1,Non,Commercial,36506
+Leroy,François,Non Marié,51,5,Oui,Comptable,49344
+Laurent,Claire,Marié,21,5,Non,Artisan,34283
+Leroy,Marie,Non Marié,63,4,Non,Infirmier,27380
+Martin,Jean,Non Marié,63,5,Non,Comptable,41687
+Laurent,Jean,Marié,60,0,Oui,Technicien,23980
+Bernard,Claire,Non Marié,33,0,Oui,Médecin,50465
+Dupont,Nathalie,Non Marié,22,4,Non,Enseignant,43035
+Dupont,Anne,Non Marié,64,1,Non,Enseignant,38911
+Dupont,Anne,Marié,56,2,Non,Enseignant,29309
+Bernard,Étienne,Non Marié,23,5,Non,Commercial,43736
+Martin,François,Non Marié,56,1,Oui,Avocat,54714
+Dupont,Julie,Non Marié,42,0,Non,Médecin,59544
+Lefebvre,Claire,Non Marié,49,2,Non,Ingénieur,61864
+Bernard,Marie,Non Marié,41,5,Non,Infirmier,37156
+Laurent,Nathalie,Non Marié,42,4,Non,Commercial,27207
+Dupont,Anne,Non Marié,26,4,Oui,Enseignant,27520
+Petit,Pierre,Marié,38,4,Non,Médecin,70223
+Moreau,Julie,Non Marié,61,5,Oui,Enseignant,46668
+Bernard,Anne,Non Marié,57,0,Oui,Avocat,49962
+Bernard,François,Marié,55,3,Non,Artisan,38466
+Lefebvre,Marie,Non Marié,24,4,Non,Avocat,31815
+Laurent,Julie,Non Marié,28,0,Oui,Artisan,39348
+Simon,Nathalie,Non Marié,43,1,Non,Technicien,28022
+Simon,François,Marié,23,4,Non,Comptable,28995
+Leroy,Claire,Marié,52,1,Oui,Technicien,38600
+Leroy,Nathalie,Non Marié,32,0,Non,Ingénieur,37825
+Moreau,Julie,Non Marié,53,3,Non,Commercial,44110
+Simon,Étienne,Marié,37,2,Non,Médecin,59498
+Moreau,Anne,Non Marié,35,3,Non,Infirmier,23875
+Martin,Julie,Marié,33,5,Oui,Ingénieur,55353
+Leroy,Étienne,Marié,45,2,Non,Infirmier,26448
+Bernard,Étienne,Marié,65,1,Non,Comptable,28715
+Moreau,Jean,Non Marié,57,4,Non,Commercial,40011
+Michel,Jean,Non Marié,48,4,Non,Infirmier,32118
+Martin,Anne,Non Marié,49,4,Non,Enseignant,47018
+Leroy,Julie,Non Marié,51,4,Non,Architecte,44641
+Moreau,Nathalie,Marié,58,0,Oui,Architecte,53167
+Michel,Pierre,Non Marié,38,2,Oui,Comptable,41262
+Petit,Julie,Marié,28,2,Oui,Ingénieur,53447
+Martin,Nathalie,Non Marié,30,3,Oui,Comptable,25644
+Bernard,François,Marié,36,0,Oui,Commercial,27828
+Moreau,Marie,Marié,20,2,Non,Architecte,31727
+Laurent,Nathalie,Marié,35,3,Non,Artisan,25888
+Michel,François,Non Marié,31,5,Non,Avocat,30916
+Moreau,François,Marié,28,2,Non,Infirmier,34879
+Dupont,Claire,Non Marié,41,5,Oui,Comptable,48284
+Dupont,François,Marié,44,0,Non,Architecte,41740
+Michel,François,Non Marié,35,3,Oui,Commercial,27335
+Dupont,Pierre,Marié,24,3,Oui,Infirmier,34758
+Petit,Julie,Non Marié,43,2,Non,Architecte,53841
+Leroy,François,Marié,63,4,Oui,Artisan,22800
+Bernard,Nathalie,Non Marié,45,0,Oui,Avocat,48226
+Simon,Pierre,Non Marié,24,2,Non,Architecte,37755
+Martin,Pierre,Non Marié,57,0,Oui,Avocat,55415
+Martin,Julie,Non Marié,22,4,Non,Infirmier,38207
+Leroy,Claire,Non Marié,53,2,Oui,Comptable,40133
+Petit,Jean,Non Marié,63,1,Non,Comptable,44614
+Lefebvre,François,Marié,23,3,Non,Ingénieur,61508
+Leroy,Claire,Non Marié,20,3,Oui,Architecte,38809
+Laurent,Marie,Marié,24,3,Non,Commercial,44541
+Laurent,Sophie,Marié,38,0,Oui,Infirmier,37315
+Dupont,Jean,Marié,24,1,Non,Architecte,39967
+Lefebvre,Marie,Marié,54,2,Oui,Ingénieur,56415
+Moreau,Nathalie,Non Marié,41,2,Oui,Ingénieur,59371
+Dupont,Nathalie,Marié,57,3,Oui,Médecin,58762
+Laurent,François,Non Marié,31,5,Oui,Architecte,57873
+Michel,Anne,Non Marié,22,5,Oui,Médecin,69934
+Bernard,Nathalie,Marié,26,3,Oui,Commercial,36047
+Martin,François,Marié,23,4,Non,Avocat,36725
+Lefebvre,Julie,Non Marié,48,2,Oui,Architecte,42561
+Michel,Jean,Marié,47,5,Oui,Ingénieur,56362
+Martin,François,Non Marié,63,4,Oui,Architecte,45619
+Leroy,Pierre,Non Marié,46,4,Oui,Enseignant,32560
+Lefebvre,Pierre,Marié,32,4,Non,Avocat,46151
+Petit,Nathalie,Non Marié,43,1,Non,Infirmier,22739
+Leroy,Nathalie,Marié,42,1,Oui,Technicien,29788
+Moreau,Nathalie,Non Marié,25,5,Non,Ingénieur,55162
+Lefebvre,François,Non Marié,36,0,Non,Comptable,31569
+Dupont,Étienne,Marié,47,4,Non,Infirmier,25953
+Bernard,Pierre,Marié,23,2,Non,Technicien,31350
+Petit,Claire,Marié,52,1,Oui,Comptable,31093
+Petit,Julie,Non Marié,37,2,Oui,Commercial,29708
+Simon,Nathalie,Non Marié,43,5,Non,Artisan,24207
+Dupont,Claire,Non Marié,51,0,Non,Médecin,55375
+Petit,Marie,Marié,44,5,Oui,Artisan,20182
+Dupont,Pierre,Non Marié,45,5,Oui,Technicien,24795
+Simon,Marie,Marié,21,3,Oui,Médecin,65238
+Dupont,Étienne,Marié,50,1,Non,Ingénieur,50766
+Petit,Anne,Marié,22,5,Oui,Architecte,38968
+Petit,Julie,Marié,21,0,Non,Ingénieur,43122
+Lefebvre,Jean,Non Marié,43,3,Non,Avocat,52967
+Lefebvre,François,Marié,43,4,Non,Technicien,31821
+Lefebvre,Jean,Marié,40,3,Non,Architecte,58572
+Michel,Jean,Non Marié,51,3,Oui,Comptable,33762
+Michel,Marie,Non Marié,21,0,Non,Médecin,54955
+Michel,Anne,Non Marié,36,0,Oui,Architecte,42435
+Petit,Anne,Marié,44,3,Non,Architecte,56938
+Simon,Sophie,Non Marié,59,1,Non,Comptable,47947
+Petit,Jean,Non Marié,36,3,Non,Commercial,46077
+Petit,Anne,Non Marié,21,3,Non,Technicien,27040
+Leroy,Jean,Marié,51,4,Non,Architecte,53069
+Petit,Julie,Marié,37,4,Oui,Architecte,55472
+Leroy,Nathalie,Non Marié,42,5,Non,Technicien,37730
+Michel,Nathalie,Non Marié,61,4,Non,Ingénieur,48287
+Martin,Julie,Non Marié,47,2,Non,Ingénieur,63936
+Bernard,Étienne,Non Marié,42,1,Non,Infirmier,33573
+Simon,Jean,Non Marié,29,3,Oui,Infirmier,41158
+Bernard,Sophie,Marié,46,4,Oui,Infirmier,28443
+Petit,Anne,Marié,64,4,Non,Avocat,40902
+Leroy,François,Marié,30,2,Non,Comptable,32548
+Petit,Jean,Non Marié,51,0,Non,Médecin,63624
+Laurent,Étienne,Marié,59,5,Non,Comptable,33388
+Martin,Julie,Non Marié,50,4,Oui,Enseignant,27474
+Martin,Étienne,Non Marié,44,2,Oui,Commercial,41578
+Simon,Claire,Non Marié,47,0,Oui,Architecte,30344
+Michel,Pierre,Non Marié,33,4,Non,Avocat,46252
+Laurent,Julie,Non Marié,49,5,Oui,Architecte,55977
+Leroy,Anne,Marié,30,1,Non,Artisan,40666
+Simon,Julie,Non Marié,20,3,Oui,Commercial,31959
+Moreau,Julie,Non Marié,60,3,Oui,Commercial,29174
+Moreau,Nathalie,Non Marié,46,4,Non,Ingénieur,62897
+Simon,Pierre,Marié,31,5,Oui,Avocat,53098
+Moreau,François,Marié,26,5,Non,Technicien,23783
+Laurent,Pierre,Non Marié,49,3,Oui,Ingénieur,48385
+Leroy,Claire,Non Marié,46,2,Non,Commercial,34364
+Michel,Sophie,Marié,22,0,Non,Infirmier,30592
+Bernard,Marie,Non Marié,48,1,Non,Technicien,29478
+Simon,Anne,Non Marié,45,1,Non,Commercial,54486
+Laurent,Sophie,Marié,45,5,Non,Médecin,66209
+Dupont,Nathalie,Marié,48,5,Non,Artisan,27856
+Dupont,Marie,Marié,31,5,Oui,Médecin,43789
+Dupont,Pierre,Non Marié,20,2,Non,Médecin,70034
+Leroy,Sophie,Marié,56,1,Non,Avocat,48655
+Leroy,Nathalie,Marié,53,4,Oui,Ingénieur,67895
+Simon,Nathalie,Non Marié,58,2,Oui,Technicien,31118
+Michel,François,Non Marié,39,2,Oui,Enseignant,25706
+Laurent,Marie,Non Marié,28,3,Non,Infirmier,42324
+Dupont,Julie,Non Marié,28,0,Oui,Enseignant,47069
+Laurent,Julie,Marié,32,5,Non,Ingénieur,52040
+Dupont,Nathalie,Non Marié,59,2,Oui,Médecin,79151
+Laurent,Jean,Non Marié,65,5,Oui,Ingénieur,40100
+Martin,Étienne,Non Marié,51,0,Oui,Technicien,35531
+Martin,François,Non Marié,54,3,Oui,Ingénieur,59381
+Michel,Anne,Non Marié,31,5,Non,Comptable,30908
+Laurent,Pierre,Marié,42,5,Non,Ingénieur,35699
+Laurent,Nathalie,Non Marié,59,2,Non,Commercial,38700
+Dupont,Pierre,Marié,41,3,Non,Infirmier,24140
+Moreau,François,Non Marié,48,3,Oui,Comptable,32723
+Leroy,Sophie,Non Marié,21,4,Non,Ingénieur,66155
+Simon,Julie,Marié,32,4,Non,Ingénieur,57076
+Petit,Pierre,Marié,27,5,Non,Artisan,41475
+Moreau,François,Marié,25,0,Oui,Ingénieur,57530
+Michel,Étienne,Non Marié,37,1,Non,Médecin,70305
+Leroy,Jean,Non Marié,33,1,Oui,Médecin,72256
+Michel,Jean,Non Marié,62,5,Oui,Comptable,35126
+Laurent,Julie,Marié,59,2,Oui,Technicien,20522
+Michel,Sophie,Non Marié,48,2,Oui,Ingénieur,38285
+Simon,Anne,Marié,51,0,Non,Médecin,40804
+Bernard,François,Non Marié,51,2,Non,Comptable,37340
+Leroy,Anne,Marié,39,4,Non,Médecin,73410
+Simon,François,Non Marié,59,2,Oui,Enseignant,37038
+Dupont,Anne,Non Marié,40,0,Non,Médecin,60618
+Dupont,Étienne,Non Marié,34,3,Non,Avocat,45179
+Laurent,Nathalie,Non Marié,41,2,Oui,Enseignant,31870
+Simon,Julie,Non Marié,51,4,Non,Infirmier,27368
+Leroy,Anne,Non Marié,62,2,Oui,Commercial,40928
+Moreau,Jean,Non Marié,46,2,Non,Technicien,28164
+Dupont,Nathalie,Non Marié,38,5,Oui,Commercial,47421
+Lefebvre,François,Non Marié,52,2,Non,Infirmier,29088
+Lefebvre,Julie,Non Marié,61,4,Non,Commercial,34491
+Martin,Jean,Non Marié,45,4,Oui,Commercial,28091
+Bernard,Pierre,Marié,25,2,Non,Architecte,44949
+Petit,Étienne,Marié,21,3,Non,Artisan,37066
+Petit,Sophie,Non Marié,64,1,Non,Comptable,29501
+Moreau,François,Non Marié,61,1,Oui,Infirmier,27262
+Laurent,François,Non Marié,22,1,Non,Infirmier,27663
+Lefebvre,Claire,Non Marié,21,5,Non,Infirmier,22858
+Dupont,Jean,Non Marié,26,4,Oui,Infirmier,22242
+Martin,Sophie,Marié,43,4,Oui,Enseignant,27881
+Bernard,François,Marié,64,5,Non,Ingénieur,69792
+Leroy,Marie,Marié,64,2,Non,Comptable,47954
+Petit,Nathalie,Marié,37,3,Non,Médecin,52715
+Moreau,Claire,Non Marié,24,2,Non,Ingénieur,41972
+Michel,Étienne,Non Marié,20,5,Non,Enseignant,40297
+Simon,Jean,Marié,30,4,Oui,Ingénieur,48038
+Laurent,François,Marié,58,5,Non,Avocat,39911
+Laurent,Jean,Marié,37,0,Oui,Architecte,30502
+Moreau,Marie,Marié,64,1,Non,Technicien,38484
+Bernard,Claire,Marié,43,5,Oui,Comptable,26285
+Dupont,Claire,Non Marié,30,0,Non,Avocat,36522
+Lefebvre,Anne,Marié,48,5,Oui,Infirmier,44262
+Michel,François,Marié,51,5,Non,Commercial,44595
+Simon,Pierre,Marié,54,1,Non,Artisan,23250
+Dupont,François,Marié,59,0,Oui,Technicien,32475
+Leroy,Julie,Marié,60,0,Non,Avocat,52739
+Petit,Jean,Marié,48,0,Oui,Technicien,32884
+Michel,Julie,Marié,31,4,Oui,Technicien,25260
+Lefebvre,François,Non Marié,41,5,Oui,Enseignant,31775
+Bernard,Pierre,Non Marié,52,3,Non,Infirmier,40434
+Leroy,François,Marié,34,3,Non,Technicien,34348
+Petit,Nathalie,Marié,50,3,Non,Avocat,57154
+Petit,Nathalie,Non Marié,49,5,Non,Comptable,33726
+Dupont,Julie,Marié,34,5,Non,Ingénieur,43777
+Michel,François,Marié,48,1,Oui,Avocat,59663
+Leroy,Marie,Marié,47,0,Oui,Infirmier,24080
+Simon,Étienne,Non Marié,65,0,Oui,Commercial,42007
+Bernard,Julie,Marié,44,1,Oui,Avocat,38011
+Petit,Marie,Marié,40,5,Non,Infirmier,38244
+Martin,Anne,Non Marié,50,5,Non,Ingénieur,38184
+Laurent,Sophie,Marié,31,1,Oui,Commercial,34250
+Dupont,Jean,Non Marié,62,3,Non,Comptable,41940
+Michel,Sophie,Non Marié,22,1,Oui,Avocat,36569
+Michel,Julie,Marié,56,5,Non,Médecin,65987
+Leroy,Nathalie,Marié,52,1,Non,Ingénieur,60870
+Simon,Jean,Marié,32,1,Non,Avocat,34710
+Bernard,Étienne,Non Marié,27,4,Non,Comptable,27596
+Martin,Anne,Non Marié,58,5,Oui,Architecte,40899
+Martin,François,Non Marié,32,5,Non,Enseignant,26316
+Laurent,Pierre,Non Marié,27,1,Non,Enseignant,35859
+Petit,Anne,Non Marié,44,0,Non,Infirmier,44255
+Martin,Sophie,Marié,58,5,Oui,Ingénieur,46875
+Moreau,Nathalie,Marié,60,4,Oui,Artisan,40679
+Dupont,Marie,Non Marié,29,0,Oui,Infirmier,42078
+Moreau,Anne,Marié,53,3,Non,Médecin,64194
+Martin,Jean,Non Marié,22,4,Oui,Médecin,67902
+Simon,Jean,Marié,38,2,Oui,Enseignant,38129
+Lefebvre,Marie,Marié,53,0,Oui,Avocat,30100
+Laurent,Julie,Marié,63,4,Non,Ingénieur,66329
+Lefebvre,Jean,Non Marié,26,2,Non,Artisan,41493
+Petit,François,Non Marié,34,2,Non,Architecte,54572
+Michel,Pierre,Marié,29,0,Non,Infirmier,35476
+Petit,Pierre,Non Marié,22,0,Oui,Médecin,46227
+Bernard,Claire,Non Marié,21,1,Oui,Architecte,32956
+Laurent,Sophie,Marié,52,5,Non,Technicien,39488
+Simon,Claire,Non Marié,37,3,Non,Artisan,42110
+Moreau,Nathalie,Marié,34,4,Non,Avocat,38189
+Simon,Étienne,Marié,63,1,Oui,Médecin,61841
+Bernard,Anne,Non Marié,34,0,Non,Artisan,35234
+Lefebvre,Julie,Non Marié,52,1,Oui,Technicien,28578
+Bernard,Julie,Marié,59,1,Oui,Architecte,58272
+Moreau,Claire,Non Marié,41,4,Non,Avocat,47737
+Petit,Étienne,Non Marié,24,4,Oui,Enseignant,30523
+Lefebvre,Jean,Marié,64,0,Oui,Enseignant,37242
+Michel,Anne,Marié,27,1,Oui,Artisan,31496
+Lefebvre,Julie,Non Marié,64,1,Oui,Enseignant,26971
+Laurent,François,Marié,55,5,Non,Ingénieur,42982
+Laurent,François,Non Marié,64,2,Oui,Technicien,27012
+Petit,Pierre,Non Marié,20,1,Oui,Ingénieur,51215
+Michel,Anne,Non Marié,23,0,Non,Comptable,43937
+Michel,Étienne,Marié,51,1,Non,Ingénieur,66711
+Laurent,Marie,Marié,24,2,Non,Architecte,56576
+Michel,Julie,Non Marié,45,2,Oui,Commercial,33082
+Michel,Jean,Non Marié,59,5,Non,Médecin,48034
+Michel,Julie,Non Marié,38,2,Non,Technicien,37112
+Simon,Jean,Marié,41,1,Non,Technicien,36916
+Dupont,François,Non Marié,55,2,Non,Enseignant,27935
+Michel,Étienne,Non Marié,54,4,Oui,Commercial,32603
+Dupont,Nathalie,Non Marié,32,1,Oui,Comptable,30456
+Dupont,Sophie,Non Marié,25,0,Oui,Médecin,58531
+Leroy,Jean,Marié,33,2,Oui,Commercial,35724
+Leroy,François,Marié,43,2,Non,Médecin,68003
+Lefebvre,François,Non Marié,25,2,Non,Artisan,39828
+Laurent,Étienne,Non Marié,56,4,Non,Comptable,32657
+Moreau,Pierre,Non Marié,32,5,Non,Commercial,48901
+Leroy,Nathalie,Non Marié,27,1,Non,Enseignant,39294
+Leroy,Nathalie,Marié,59,1,Oui,Enseignant,45877
+Simon,Anne,Marié,26,2,Oui,Comptable,27675
+Petit,Étienne,Non Marié,38,0,Oui,Artisan,27048
+Martin,Nathalie,Marié,33,3,Oui,Enseignant,49167
+Michel,Sophie,Marié,35,3,Non,Architecte,43751
+Dupont,Julie,Marié,44,5,Non,Commercial,38479
+Simon,Étienne,Marié,58,1,Oui,Ingénieur,38789
+Simon,Pierre,Non Marié,48,0,Non,Ingénieur,35069
+Michel,Nathalie,Marié,52,3,Oui,Avocat,52781
+Petit,Nathalie,Marié,26,3,Non,Médecin,65386
+Lefebvre,Anne,Marié,25,3,Oui,Artisan,26971
+Petit,Sophie,Non Marié,64,5,Non,Artisan,23066
+Laurent,Pierre,Non Marié,25,2,Oui,Architecte,35052
+Laurent,Jean,Marié,62,4,Non,Médecin,44662
+Michel,Pierre,Marié,29,5,Oui,Comptable,47404
+Petit,Julie,Marié,24,5,Oui,Enseignant,46613
+Martin,Jean,Marié,27,1,Non,Médecin,42448
+Martin,Étienne,Marié,63,1,Oui,Avocat,58196
+Laurent,Nathalie,Marié,33,1,Non,Ingénieur,67865
+Dupont,Jean,Non Marié,29,3,Oui,Infirmier,41416
+Bernard,Claire,Non Marié,20,2,Oui,Infirmier,31363
+Michel,Sophie,Non Marié,33,0,Non,Avocat,51888
+Dupont,Nathalie,Marié,55,1,Oui,Ingénieur,57510
+Moreau,François,Non Marié,48,1,Oui,Avocat,50502
+Michel,Sophie,Marié,37,3,Oui,Infirmier,38868
+Lefebvre,Anne,Non Marié,46,0,Non,Comptable,35700
+Simon,Sophie,Non Marié,27,0,Non,Enseignant,35210
+Bernard,François,Non Marié,22,0,Non,Enseignant,29559
+Martin,Nathalie,Marié,40,1,Oui,Infirmier,35645
+Michel,Anne,Non Marié,22,3,Non,Technicien,21369
+Martin,Claire,Marié,25,0,Non,Technicien,33640
+Laurent,Nathalie,Marié,39,4,Non,Ingénieur,56149
+Michel,Julie,Non Marié,53,4,Oui,Enseignant,37651
+Simon,Marie,Marié,59,3,Oui,Architecte,53600
+Moreau,Étienne,Non Marié,52,3,Oui,Technicien,20793
+Bernard,Nathalie,Marié,51,3,Non,Avocat,35320
+Bernard,Jean,Marié,44,5,Non,Ingénieur,37222
+Leroy,Jean,Non Marié,55,3,Non,Architecte,43494
+Lefebvre,Julie,Marié,41,2,Oui,Architecte,35729
+Bernard,Marie,Marié,40,1,Non,Médecin,46667
+Dupont,Sophie,Non Marié,61,5,Oui,Avocat,48749
+Bernard,Claire,Marié,42,1,Non,Infirmier,40805
+Martin,Pierre,Marié,64,5,Oui,Infirmier,24681
+Petit,Jean,Marié,64,3,Oui,Commercial,26574
+Moreau,Julie,Non Marié,23,3,Oui,Technicien,31745
+Martin,Marie,Marié,62,1,Non,Technicien,39110
+Simon,Sophie,Non Marié,56,0,Oui,Avocat,44297
+Bernard,Sophie,Marié,46,1,Non,Avocat,31004
+Dupont,François,Non Marié,60,4,Non,Ingénieur,63811
+Moreau,Nathalie,Non Marié,65,3,Oui,Architecte,35672
+Lefebvre,François,Marié,44,3,Oui,Ingénieur,35152
+Simon,Anne,Marié,59,3,Non,Médecin,59452
+Martin,Julie,Non Marié,22,5,Non,Commercial,50056
+Moreau,Étienne,Non Marié,45,4,Oui,Enseignant,44404
+Dupont,Claire,Marié,43,4,Non,Architecte,40779
+Petit,Sophie,Non Marié,24,0,Non,Commercial,52921
+Michel,Claire,Non Marié,36,1,Oui,Architecte,38108
+Bernard,Claire,Non Marié,26,0,Non,Médecin,57720
+Dupont,Marie,Marié,41,3,Oui,Médecin,61578
+Leroy,Sophie,Non Marié,28,5,Non,Médecin,49289
+Petit,Pierre,Marié,63,4,Non,Infirmier,26725
+Lefebvre,Jean,Non Marié,34,2,Non,Comptable,26331
+Michel,Julie,Non Marié,31,2,Non,Commercial,37896
+Simon,Nathalie,Marié,61,1,Oui,Commercial,42200
+Dupont,Étienne,Marié,30,3,Non,Comptable,26614
+Michel,Marie,Non Marié,49,2,Oui,Avocat,44561
+Petit,Jean,Marié,42,3,Oui,Comptable,47426
+Moreau,François,Marié,32,5,Non,Infirmier,39616
+Leroy,Étienne,Marié,54,0,Non,Ingénieur,44127
+Dupont,Anne,Marié,65,5,Non,Médecin,74767
+Leroy,Claire,Marié,38,0,Non,Commercial,50797
+Dupont,Étienne,Non Marié,28,1,Non,Enseignant,25915
+Leroy,Jean,Marié,48,5,Non,Commercial,31143
+Petit,Claire,Non Marié,25,2,Non,Avocat,45713
+Bernard,François,Marié,49,0,Non,Infirmier,40968
+Leroy,Claire,Marié,53,5,Oui,Médecin,58769
+Michel,Étienne,Non Marié,44,5,Oui,Technicien,24618
+Dupont,Étienne,Non Marié,39,5,Non,Technicien,37322
+Laurent,Jean,Marié,45,4,Oui,Architecte,32076
+Petit,Nathalie,Non Marié,28,5,Non,Artisan,37221
+Simon,Sophie,Non Marié,40,0,Non,Technicien,22691
+Bernard,Marie,Non Marié,46,5,Non,Architecte,57524
+Michel,François,Marié,20,3,Oui,Comptable,37383
+Michel,Pierre,Marié,25,5,Oui,Infirmier,25284
+Martin,Sophie,Marié,24,4,Oui,Architecte,59538
+Laurent,Étienne,Marié,43,4,Oui,Artisan,32102
+Martin,Marie,Marié,49,0,Oui,Artisan,35924
+Martin,Julie,Marié,62,5,Oui,Avocat,37269
+Leroy,Sophie,Non Marié,62,4,Oui,Avocat,31104
+Michel,Nathalie,Non Marié,28,2,Oui,Enseignant,35602
+Michel,Nathalie,Non Marié,43,4,Oui,Médecin,52129
+Petit,Marie,Non Marié,56,5,Non,Ingénieur,63562
+Petit,Nathalie,Non Marié,61,4,Oui,Médecin,74750
+Simon,Claire,Non Marié,64,4,Oui,Technicien,23996
+Bernard,Nathalie,Non Marié,49,0,Oui,Ingénieur,44080
+Laurent,Étienne,Non Marié,22,0,Oui,Technicien,35809
+Lefebvre,Nathalie,Non Marié,33,0,Non,Médecin,71847
+Leroy,Jean,Non Marié,45,4,Non,Avocat,35293
+Laurent,Anne,Marié,45,0,Non,Ingénieur,54075
+Petit,Pierre,Marié,52,0,Non,Technicien,31373
+Dupont,Jean,Non Marié,31,3,Oui,Enseignant,42659
+Lefebvre,Pierre,Non Marié,20,2,Non,Commercial,34207
+Simon,Sophie,Marié,23,3,Non,Enseignant,36111
+Laurent,Nathalie,Marié,40,5,Oui,Artisan,23130
+Lefebvre,Jean,Marié,45,4,Oui,Comptable,41478
+Petit,Étienne,Marié,22,4,Oui,Artisan,43936
+Leroy,Anne,Marié,37,0,Non,Artisan,44554
+Leroy,Jean,Marié,54,0,Oui,Ingénieur,42946
+Michel,Étienne,Non Marié,58,3,Oui,Ingénieur,45479
+Simon,Étienne,Marié,57,5,Non,Avocat,44737
+Petit,François,Non Marié,54,4,Non,Artisan,22768
+Laurent,Claire,Non Marié,60,2,Non,Enseignant,29890
+Petit,Julie,Marié,55,4,Non,Technicien,23881
+Lefebvre,Marie,Non Marié,25,5,Oui,Technicien,23078
+Dupont,Sophie,Marié,30,1,Non,Artisan,42055
+Petit,Étienne,Non Marié,47,2,Oui,Avocat,32740
+Bernard,Étienne,Marié,51,5,Non,Artisan,26672
+Bernard,Marie,Non Marié,27,4,Oui,Avocat,53002
+Laurent,Pierre,Non Marié,34,2,Non,Ingénieur,67801
+Michel,Marie,Marié,32,1,Non,Ingénieur,65381
+Dupont,Sophie,Non Marié,42,4,Oui,Médecin,60072
+Dupont,Marie,Non Marié,47,0,Oui,Ingénieur,49476
+Dupont,François,Non Marié,50,0,Oui,Artisan,35509
+Simon,Marie,Marié,36,2,Oui,Architecte,35495
+Moreau,Nathalie,Non Marié,39,5,Oui,Comptable,41561
+Martin,Étienne,Marié,47,0,Non,Enseignant,35236
+Dupont,Nathalie,Marié,39,4,Oui,Comptable,49353
+Bernard,Anne,Non Marié,64,2,Oui,Comptable,39904
+Petit,Julie,Non Marié,24,3,Oui,Comptable,48844
+Dupont,Jean,Marié,60,3,Oui,Médecin,50323
+Laurent,Sophie,Non Marié,60,2,Oui,Médecin,52546
+Bernard,Étienne,Non Marié,56,2,Non,Médecin,59753
+Lefebvre,François,Non Marié,39,4,Oui,Comptable,25517
+Laurent,Marie,Marié,50,3,Non,Ingénieur,49417
+Bernard,François,Non Marié,57,4,Oui,Enseignant,39666
+Michel,Anne,Non Marié,51,4,Oui,Artisan,22262
+Dupont,François,Marié,46,2,Non,Enseignant,28013
+Laurent,Sophie,Marié,58,4,Non,Ingénieur,37811
+Laurent,Étienne,Non Marié,39,2,Non,Avocat,42748
+Simon,Pierre,Non Marié,44,4,Non,Artisan,32130
+Laurent,Pierre,Marié,31,3,Oui,Enseignant,49613
+Petit,Anne,Non Marié,62,4,Oui,Architecte,47017
+Petit,Julie,Non Marié,40,3,Oui,Technicien,28190
+Lefebvre,Julie,Non Marié,63,4,Oui,Artisan,30627
