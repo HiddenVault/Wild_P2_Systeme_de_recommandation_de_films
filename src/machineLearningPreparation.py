@@ -51,7 +51,7 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                                  'GE_Action', 'GE_Adult', 'GE_Adventure', 'GE_Animation', 'GE_Biography', 'GE_Comedy', 
                                  'GE_Crime', 'GE_Documentary', 'GE_Drama', 'GE_Family', 'GE_Fantasy', 'GE_Film-Noir', 
                                  'GE_History', 'GE_Horror', 'GE_Music', 'GE_Musical', 'GE_Mystery', 'GE_Romance', 'GE_Sci-Fi', 
-                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes',
+                                 'GE_Sport', 'GE_Thriller', 'GE_War', 'GE_Western', 'RA_averageRating', 'RA_numVotes','TI_overview',
                                  'TI_budget', 'TI_poster_path', 'TI_region','TI_language','TI_revenue','TI_production_companies_name']
 
             df_copy = df_copy[selected_columns]
@@ -80,6 +80,7 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                 'TI_budget' : 'mean', 
                 'TI_revenue' : 'mean',
                 'TI_poster_path' : 'first',
+                'TI_overview' :  'first',
                 'TI_production_companies_name' : join_strings,
                 'TI_region' : join_strings,
                 'TI_language' : join_strings

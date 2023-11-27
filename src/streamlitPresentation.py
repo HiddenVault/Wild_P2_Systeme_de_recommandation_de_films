@@ -8,7 +8,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # Charger le DataFrame à partir du fichier CSV
-df = pd.read_csv('./data/preparation/ML_F2_merged_data_v3.csv.csv_explore.csv', sep=',', encoding='UTF-8', low_memory=False)
+df = pd.read_csv('./data/preparation/ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
 
 # Sélection des colonnes numériques du DataFrame
 df_numeric = df.select_dtypes(include=['float64', 'int64'])
@@ -52,7 +52,7 @@ if user_input:
         cluster_movies = cluster_movies[cluster_movies['TI_primaryTitle'] != selected_movie_info['TI_primaryTitle']]
 
         # Sélection des films recommandés
-        recommended_movies = cluster_movies.loc[:, ['TI_primaryTitle', 'TI_startYear', 'TI_budget', 'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes', 'RA_numVotes', 'TI_region', 'TI_language','TI_poster_path']].head(5)
+        recommended_movies = cluster_movies.loc[:, ['TI_primaryTitle', 'TI_startYear', 'TI_budget', 'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes', 'TI_overview', 'RA_numVotes', 'TI_region', 'TI_language','TI_poster_path']].head(5)
 
         # Affichage des recommandations
         st.header("Films recommandés:")
@@ -63,11 +63,12 @@ if user_input:
 
         for index, row in recommended_movies.iterrows():
             movie_title = row['TI_primaryTitle']
+            poster_path = row['TI_poster_path']
+            overview = row['TI_overview']
             start_year = row['TI_startYear']
             average_rating = row['RA_averageRating']
             num_votes = row['RA_numVotes']
-            poster_path = row['TI_poster_path']
-        
+
             # Afficher les informations textuelles
             display_text = (
                 f"{movie_title} ({start_year}), "
@@ -75,8 +76,11 @@ if user_input:
                 f"Votes: {num_votes}"
             )
             st.write(display_text)
-        
+
             # Afficher l'image
-            st.image(poster_path, caption=movie_title, use_column_width=True)
+            st.image(poster_path, width=200)
+
+            st.write(f"Résumé:")
+            st.write(f"{overview}")
 
 
