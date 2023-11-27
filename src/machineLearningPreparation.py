@@ -55,14 +55,9 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                                  'TI_budget', 'TI_poster_path', 'TI_region','TI_language','TI_revenue','TI_production_companies_name']
 
             df_copy = df_copy[selected_columns]
-
+       
             # Jointure pour concaténer les valeurs uniques
             def join_strings(series):
-                unique_values = set(series)
-                return ', '.join(unique_values)
-            
-            # Jointure pour concaténer les valeurs uniques
-            def join_strings2(series):
                 unique_values = set(series)
                 # Convertir chaque élément en chaîne de caractères
                 str_values = [str(value) for value in unique_values]
@@ -85,7 +80,7 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
                 'TI_budget' : 'mean', 
                 'TI_revenue' : 'mean',
                 'TI_poster_path' : 'first',
-                'TI_production_companies_name' : join_strings2,
+                'TI_production_companies_name' : join_strings,
                 'TI_region' : join_strings,
                 'TI_language' : join_strings
             }).reset_index()
