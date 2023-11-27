@@ -1,23 +1,21 @@
 '''
-Explications : 
+Explications :
 1. Chargement du dataframe à partir d'un fichier CSV.
-2. Sélection des colonnes numériques du DataFrame. On ne se concentre que sur les caractéristiques numériques pour la recommandation.
-3. Normalisation pour ajuster les valeurs pour qu'elles soient sur une échelle similaire.
-4. Un modèle de Nearest Neighbors est créé avec 
-    l'algorithme 'brute' (Recherche exhaustive pour trouver les voisins les plus proches),
-    la mesure de similarité cosinus (Mesure la similarité entre deux films. Un score élevé indique une grande similarité.).
-5. La fonction movie_recommendation :
+2. Normalisation pour ajuster les valeurs pour qu'elles soient sur une échelle similaire.
+3. Clustering avec KMeans : Regroupement des films en groupes similaires en fonction de certaines caractéristiques communes. 
+    KMeans examine les caractéristiques des films et les place dans des clusters qui regroupe des films similaires.
+4. La fonction movie_recommendation :
     prend en entrée le nom d'un film, 
     recherche le film dans le DataFrame, 
     normalise ses données, 
-    utilise Nearest Neighbors pour trouver les voisins les plus proches, 
-    et recommande d'autres films similaires.
-6. Avec le menu, l'utilisateur peut saisir le nom d'un film sans avoir à recharger le script après chaque recherche.
+    utilise Kmeans pour trouver les films les plus proches dans le cluster, 
+    recommande d'autres films similaires.     
+5. Avec le menu, l'utilisateur peut saisir le nom d'un film sans avoir à recharger le script après chaque recherche.
 '''
 
 import pandas as pd
+from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import NearestNeighbors
 from sklearn.metrics.pairwise import cosine_similarity
 import warnings
 
@@ -40,12 +38,10 @@ df_numeric = df.select_dtypes(include=['float64', 'int64'])
 scaler = StandardScaler()
 df_numeric_normalized = scaler.fit_transform(df_numeric)
 
-# Utilisation de NearestNeighbors pour trouver les voisins les plus proches
-n_neighbors = 6  # Nombre de voisins souhaité / Nombre de voisins + 1 car le film recherché est considéré comme son propre voisin
-# algorithm='brute' examine toutes les combinaisons possibles sans utiliser de méthodes d'optimisation ou d'index pour accélérer le processus.
-# metric='cosine' mesure la similarité entre les points (films).
-neighbors_model = NearestNeighbors(n_neighbors=n_neighbors, algorithm='brute', metric='cosine')
-neighbors_model.fit(df_numeric_normalized)
+# Utilisation de KMeans pour regrouper les films en clusters
+n_clusters = 9  # Nombre de clusters souhaité
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+df['cluster'] = kmeans.fit_predict(df_numeric_normalized)
 
 # Initialisation de selected_movie_info avec une valeur par défaut pour éviter l'erreur "UnboundLocalError"
 # si l'utilisateur saisit 0, selected_movie_info n'est pas définie, mais le reste du code tente de l'utiliser.
@@ -105,28 +101,24 @@ def movie_recommendation(movie_name):
         #   Les caractéristiques du film sont normalisées pour être rendues comparables avec d'autres films dans le modèle de recommandation.
         movie_data_normalized = scaler.transform(selected_movie_info[df_numeric.columns].values.reshape(1, -1))
 
-        # Recherche des voisins les plus proches
-        # neighbors_model.kneighbors(movie_data_normalized) renvoie une paire de valeurs : Distance et indice des valeurs
-        # _ est utilisé (conviention et lisibilité du code) pour ignorer ou stocker temporairement des valeurs que le programme ne prévoit pas d'utiliser.
-        # Ici le résultat de neighbors_model.kneighbors(movie_data_normalized) a deux parties, mais seule la seconde partie (neighbor_indices) est nécessaire.
-        # On ignore la première  valeur retournée par kneighbors. Elle n'est pas utilisée dans le contexte de ce programme.
-        # On ne stocke que la deuxième partie (neighbor_indices)
-        _, neighbor_indices = neighbors_model.kneighbors(movie_data_normalized)
+        # Utilisation de KMeans pour prédire le cluster du film recherché
+        selected_movie_cluster = kmeans.predict(movie_data_normalized)
+
+        # Filtrage des films du même cluster que le film recherché
+        cluster_movies = df[df['cluster'] == selected_movie_cluster[0]]
 
         # Exclusion du film à l'origine de la recommandation
-        # neighbor_indices[0] est une liste contenant une liste d'indices pour chaque film.
-        # [1:]: On sélectionne tous les indices à partir du deuxième (index 1 jusqu'à la fin)
-        neighbor_indices = neighbor_indices[0][1:]
+        cluster_movies = cluster_movies[cluster_movies['TI_primaryTitle'] != selected_movie_info['TI_primaryTitle']]
 
         # Sélection des films recommandés
         # Liste des colonnes disponibles
         # 'TI_startYear', 'TI_runtimeMinutes', 'RA_averageRating', 'RA_numVotes', 
         # 'TI_budget', 'TI_revenue', 'TI_poster_path', 'TI_production_companies_name', 
         # 'TI_region', 'TI_language'
-        recommended_movies = df.iloc[neighbor_indices][['TI_primaryTitle', 'TI_startYear', 'TI_budget', \
+        recommended_movies = cluster_movies.loc[:, ['TI_primaryTitle', 'TI_startYear', 'TI_budget', \
                                                         'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes',  \
-                                                        'RA_numVotes', 'TI_region', 'TI_language', \
-                                                        'TI_production_companies_name', 'TI_poster_path']]
+                                                        'RA_numVotes', 'TI_region', 'TI_language' \
+                                                        ]].head(5)
         
         # Afficher le titre du film saisi
         print("Titre du film saisi :", selected_movie_info['TI_primaryTitle'])
