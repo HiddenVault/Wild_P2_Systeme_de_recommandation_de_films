@@ -47,19 +47,11 @@ for file_name, (path, separator, nrows_value, first_rows, sample_rows, last_rows
             # Filtrer les lignes avec "isOriginalTitle" égale à 1
             df_copy = df_copy[df_copy['isOriginalTitle'] == '0']
 
-            # Filtrer les lignes avec "isOriginalTitle" égale à 1
-            #df_copy = df_copy[df_copy['language'].isin(['FR', 'EN'])]
+            # Filtrage de la colonne "language"
             df_copy = df_copy[df_copy['language'].str.upper().isin(['FR', 'US', 'GB', 'CA','BE'])]
+
+            # Filtrage de la colonne "region"            
             # df_copy = df_copy[df_copy['region'].str.upper().isin(['FR', 'US', 'GB', 'CA'])]
-
-            #df_copy = df_copy[df_copy['region'].isin(['FR', 'EN'])]         
-
-            # Suppression des lignes 'XWW' dans la colonne 'region' 
-            #df_copy = df_copy[df_copy['region'] != 'XWW']
-
-            # Suppression des lignes '\N' dans la colonne 'language'
-            #df_copy.drop(df_copy[df_copy['language'] == '\\N'].index, inplace=True)
-            #df_copy = df_copy[df_copy['language'] != '\\N']
 
             # Suppression des colonnes indiquées
             columns_to_drop = ['ordering', 'attributes', 'types','isOriginalTitle']
