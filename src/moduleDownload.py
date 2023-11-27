@@ -9,8 +9,6 @@ Explications :
     prêt à être utilisé pour la création d'un DataFrame ou d'autres opérations de traitement des données.
 '''
 
-
-
 # Fonction pour télécharger un fichier depuis une URL ou lire un fichier localement
 def download_or_read_file(file_name, path, separator, nrows_value):
     # Importation du module requests pour effectuer des requêtes HTTP
