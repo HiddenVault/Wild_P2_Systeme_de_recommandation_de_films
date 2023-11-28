@@ -18,6 +18,7 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import warnings
+from tabulate import tabulate
 
 # On ignore les avertissements
 warnings.filterwarnings("ignore")
@@ -119,9 +120,20 @@ def movie_recommendation(movie_name):
                                                         'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes',  \
                                                         'RA_numVotes', 'TI_region', 'TI_language' \
                                                         ]].head(5)
-        
-        # Afficher le titre du film saisi
-        print("Titre du film saisi :", selected_movie_info['TI_primaryTitle'])
+        # Renommage des colonnes
+        recommended_movies.columns = ['Titre', 'Année de début', 'Budget', 'Revenu', 'Note moyenne', \
+                                 'Durée', 'Nombre de votes', 'Région', 'Langue']
+                
+        # Affichage du titre du film saisi
+        print("Titre du film saisi :", selected_movie_info['TI_primaryTitle'])       
+
+        # Affichage des informations sur le film sélectionné
+        movie_info_df = pd.DataFrame(selected_movie_info[['TI_primaryTitle', 'TI_startYear', 'TI_budget', \
+                                   'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes', \
+                                   'RA_numVotes', 'TI_region', 'TI_language']]).transpose()
+        movie_info_df.columns = ['Titre', 'Année de début', 'Budget', 'Revenu', 'Note moyenne', \
+                                 'Durée', 'Nombre de votes', 'Région', 'Langue']
+        print(tabulate(movie_info_df, headers='keys', tablefmt='pretty',colalign=("left")))
 
         return recommended_movies
 
@@ -144,4 +156,4 @@ while True:
         print("Aucun film recommandé.")
     else:
         print("Films recommandés :")
-        print(recommended_movies)
+        print(tabulate(recommended_movies, headers='keys', tablefmt='pretty',colalign=("left")))
