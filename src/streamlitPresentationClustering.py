@@ -3,6 +3,7 @@ import streamlit as st
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import warnings
+from PIL import Image
 
 # Ignorer les avertissements
 warnings.filterwarnings("ignore")
@@ -23,6 +24,11 @@ kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 df['cluster'] = kmeans.fit_predict(df_numeric_normalized)
 
 # Menu Streamlit
+# Affichage de la bannière
+image_url= 'http://hiddenvault.fr/P2_Systeme_de_recommandation_de_films/banner.png'
+code_html = f"<img src='{image_url}' width='100%'/>"
+st.markdown(code_html, unsafe_allow_html = True)
+
 st.title("Movie recommendations")
 
 st.markdown(
@@ -86,11 +92,9 @@ if user_input:
         st.write(f"Summary :")
         st.write(f"{selected_movie_info['TI_overview']}")
 
-
-        # Affichage des recommandations
         st.header("Recommended movies :")
 
-        # Affichage des recommandations sous forme de texte
+        # Affichage des recommandations
         for index, row in recommended_movies.iterrows():
             movie_title = row['TI_primaryTitle']
             poster_path = row['TI_poster_path']
