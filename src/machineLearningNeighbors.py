@@ -73,23 +73,31 @@ def movie_recommendation(movie_name):
         for i, movie in enumerate(matching_movies['TI_primaryTitle']):
             print(f"{i + 1}. {movie}")
 
+        # Boucle infinie pour permettre la sélectionner d'un film (La boucle continue jusqu'à ce que l'utilisateur fasse une sélection valide.)
         while True:
             try:
+                # Saisie du numéro de film souhaité et conversion en entier.
                 selected_movie_index = int(input("Veuillez sélectionner le numéro du film souhaité : "))
-
+                # Le numéro sélectionné est-il dans la plage (de 0 à la longueur des films correspondants).
                 if 0 <= selected_movie_index <= len(matching_movies):
+                    # On vérifie si l'utilisateur a saisi 0 (pour annuler la sélection)
                     if selected_movie_index != 0:
+                        # Assignation des informations du film sélectionné à selected_movie_info
                         selected_movie_info = matching_movies.iloc[selected_movie_index - 1]
                     else:
-                        # Si l'utilisateur saisit 0
+                         # Si l'utilisateur saisit 0, affiche un message d'erreur et continuation de la boucle
                         print("Vous avez sélectionné 0. Veuillez entrer un numéro valide.")
                         # Est-il utile de continuer la boucle pour redemander à l'utilisateur de saisir un numéro valide ?
+                    # Sortie de la boucle après une sélection valide
                     break
                 else:
+                    # Affichage d'un message si le numéro est en dehors de la plage
                     print("Veuillez entrer un numéro valide.")
             except ValueError:
+                # Affichage d'un message si la conversion en entier échoue
                 print("Veuillez entrer un numéro valide.")
     else:
+        # Si on a un unique résultat, les informations de ce film assignées à selected_movie_info
         selected_movie_info = matching_movies.iloc[0]
 
     # Normalisation des données du film recherché
@@ -124,30 +132,57 @@ def movie_recommendation(movie_name):
         # 'TI_startYear', 'TI_runtimeMinutes', 'RA_averageRating', 'RA_numVotes', 
         # 'TI_budget', 'TI_revenue', 'TI_poster_path', 'TI_production_companies_name', 
         # 'TI_region', 'TI_language'
+        # Sélection des informations des films recommandés à partir des indices des voisins
+        # iloc permet d'accéder aux lignes du DataFrame df en utilisant des indices. neighbor_indices doit être une liste d'indices représentant les voisins.
         recommended_movies = df.iloc[neighbor_indices][['TI_primaryTitle', 'TI_startYear', 'TI_budget', \
                                                         'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes',  \
                                                         'RA_numVotes', 'TI_region', 'TI_language' \
                                                         ]]
+        # Conversion des colonnes dans movie_info_df
+        # astype(int) : Conversion de la colonne en entier
+        recommended_movies['TI_startYear'] = recommended_movies['TI_startYear'].astype(int)
+        # .map('{:,.0f}'.format) : Mise en place du séparateur de milliers avec la virgule
+        # .str.replace(',', '.') : Remplace de la virgule par un point
+        recommended_movies['TI_budget'] = recommended_movies['TI_budget'].map('{:,.0f}'.format).str.replace(',', '.') + ' $'
+        recommended_movies['TI_revenue'] = recommended_movies['TI_revenue'].map('{:,.0f}'.format).str.replace(',', '.') + ' $'
+        recommended_movies['TI_runtimeMinutes'] = recommended_movies['TI_runtimeMinutes'].astype(int)
+        recommended_movies['RA_numVotes'] = recommended_movies['RA_numVotes'].map('{:,.0f}'.format).str.replace(',', '.')
+        # str.upper() : Conversion de toutes les lettres de la chaîne en majuscules
+        recommended_movies['TI_language'] = recommended_movies['TI_language'].str.upper()
+        
         # Renommage des colonnes
-        recommended_movies.columns = ['Titre', 'Année de début', 'Budget', 'Revenu', 'Note moyenne', \
+        recommended_movies.columns = ['Titre', 'Sortie', 'Budget', 'Revenu', 'Note moyenne', \
                                  'Durée', 'Nombre de votes', 'Région', 'Langue']
                 
         # Affichage du titre du film saisi
         print("Titre du film saisi :", selected_movie_info['TI_primaryTitle'])       
 
         # Affichage des informations sur le film sélectionné
+        # Sélection des colonnes
         movie_info_df = pd.DataFrame(selected_movie_info[['TI_primaryTitle', 'TI_startYear', 'TI_budget', \
                                    'TI_revenue', 'RA_averageRating', 'TI_runtimeMinutes', \
                                    'RA_numVotes', 'TI_region', 'TI_language']]).transpose()
-        movie_info_df.columns = ['Titre', 'Année de début', 'Budget', 'Revenu', 'Note moyenne', \
+        
+        # Conversion des colonnes dans movie_info_df
+         # astype(int) : Conversion de la colonne en entier
+        movie_info_df['TI_startYear'] = movie_info_df['TI_startYear'].astype(int)
+        # .map('{:,.0f}'.format) : Mise en place du séparateur de milliers avec la virgule
+        # .str.replace(',', '.') : Remplace de la virgule par un point
+        movie_info_df['TI_budget'] = movie_info_df['TI_budget'].map('{:,.0f}'.format).str.replace(',', '.') + ' $'
+        movie_info_df['TI_revenue'] = movie_info_df['TI_revenue'].map('{:,.0f}'.format).str.replace(',', '.') + ' $'
+        movie_info_df['TI_runtimeMinutes'] = movie_info_df['TI_runtimeMinutes'].astype(int)
+        movie_info_df['RA_numVotes'] = movie_info_df['RA_numVotes'].map('{:,.0f}'.format).str.replace(',', '.')
+        # str.upper() : Conversion de toutes les lettres de la chaîne en majuscules
+        movie_info_df['TI_language'] = movie_info_df['TI_language'].str.upper()
+        
+        # Renommage des colonnes
+        movie_info_df.columns = ['Titre', 'Sortie', 'Budget', 'Revenu', 'Note moyenne', \
                                  'Durée', 'Nombre de votes', 'Région', 'Langue']
+        # Affichage des informations sur le film sélectionné sous forme de tableau
         print(tabulate(movie_info_df, headers='keys', tablefmt='pretty',colalign=("left")))
 
+        # On retourne la liste des films recommandés
         return recommended_movies
-
-    else:
-        print("Aucun film sélectionné.")
-        return pd.DataFrame()
 
 # Menu (pour éviter d'avoir à relancer le script)
 while True:
