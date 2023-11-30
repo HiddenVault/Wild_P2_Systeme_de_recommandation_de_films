@@ -1,6 +1,33 @@
 <style>
 .main {
-background-image: url("https://i.imgur.com/efE50sy.jpg");
-background-size: cover;
+    /*background-color: #000000; /* Noir */
+    background-image: url("https://i.imgur.com/JLe0dXC.jpg");
+    color: rgb(19, 18, 18); /* Blanc */
+    background-position: center;
+    background-size: cover;
+    /*margin: 20px ;    /* important */
+}
+/*[data-testid='stMarkdownContainer'] {
+background-image: url("http://hiddenvault.fr/P2_Systeme_de_recommandation_de_films/banner.png");
+background-size: 100%;
+background-repeat:no-repeat
+}*/
+[data-testid="stHeader"] {
+    background-color: rgba(0, 0, 0, 0);
+}
+h1 {
+    color: rgb(0, 0, 0);
+    /*width: 500px;
+    border: 1px solid black;*/
+}
+h2 {
+    color: rgb(0, 0, 0);
+    /*width: 500px;
+    border: 1px solid black;*/
+}
+p {
+    color: rgb(0, 0, 0);
+    /*width: 500px;*/
+    /*border: 1px solid black;*/
 }
 </style>

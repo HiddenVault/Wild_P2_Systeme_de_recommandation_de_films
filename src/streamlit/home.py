@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.title('Home page')
+st.title('Choisir un type d''algorithme de ML')
