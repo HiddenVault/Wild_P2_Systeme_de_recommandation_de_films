@@ -4,6 +4,7 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import warnings
 from PIL import Image
+import os
 
 def dataframe_with_selections(df):
     df_with_selections = df.copy()
@@ -28,13 +29,13 @@ def lire_css(fichier):
         return f.read()
 
 # Lire le fichier de styles perso
-contenu_html = lire_css('pages/st.css')
+contenu_html = lire_css('st.css')
 
 # Ignorer les avertissements
 warnings.filterwarnings("ignore")
 
 # Charger le DataFrame à partir du fichier CSV
-df = pd.read_csv('../data/preparation/ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
+df = pd.read_csv('ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
 
 # Sélection des colonnes numériques du DataFrame
 df_numeric = df.select_dtypes(include=['float64', 'int64'])
