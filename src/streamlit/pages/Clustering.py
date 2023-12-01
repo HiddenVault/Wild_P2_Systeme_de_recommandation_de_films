@@ -44,37 +44,29 @@ scaler = StandardScaler()
 df_numeric_normalized = scaler.fit_transform(df_numeric)
 
 # Utiliser KMeans pour regrouper les films en clusters
-n_clusters = 9
+n_clusters = 3
 kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 df['cluster'] = kmeans.fit_predict(df_numeric_normalized)
 
+# Use the full page instead of a narrow central column
+st.set_page_config(layout="wide")
 # Menu Streamlit
 # Affichage de la bannière
 st.markdown(contenu_html, unsafe_allow_html = True)
 
-st.header("Notre recommandation...")
+st.title("Notre recommandation par la méthode du clustering")
 
-# Saisie du nom du film
-# user_input = st.text_input("Enter movie name :")
+col1, col2 = st.columns([1, 1])
 
 PrimTitleList = df.sort_values('TI_primaryTitle')
-user_input = st.selectbox("Saisir un nom de film :", PrimTitleList['TI_primaryTitle'], None)
+user_input = col1.selectbox("Saisir un nom de film :", PrimTitleList['TI_primaryTitle'], None)
 
 if user_input:
     # Recherche et recommandation des films
-    matching_movies = df[df['TI_primaryTitle'].str.contains(user_input, case=False, na=False)]
+    matching_movies = df[df['TI_primaryTitle'].str.contains(user_input, case=False, na=False)].head(1)
 
-    # if matching_movies.empty:
-    #     st.warning(f"Aucun film trouvé avec la correspondance '{user_input}'. Veuillez réessayer.")
-    # else:
-    #     # Affichage des films correspondants dans une liste déroulante
-    #     selected_movie = st.selectbox("Select movie :", matching_movies['TI_primaryTitle'])
+    selected_movie_info = matching_movies.copy() # dataframe_with_selections(matching_movies)
 
-    # Récupération des informations sur le film sélectionné
-    # selected_movie_info = matching_movies[matching_movies['TI_primaryTitle'] == selected_movie].iloc[0]
-    selected_movie_info = dataframe_with_selections(matching_movies)
-    # st.write(selected_movie_info)
-    
     # Si un film est selectionné (df <> vide)
     if selected_movie_info.empty == False:
         # Normalisation des données du film sélectionné
@@ -93,30 +85,31 @@ if user_input:
         recommended_movies = cluster_movies.loc[:, ['TI_primaryTitle', 'TI_startYear', 'TI_budget', 'TI_revenue', 
                                                     'RA_averageRating', 'TI_runtimeMinutes', 'TI_overview', 'RA_numVotes', 
                                                     'TI_region', 'TI_language','TI_poster_path']].head(5)
-
-        # Affichage des informations du film sélectionné
-        st.header("Film sélectionné :")
+        recommended_movies['TI_poster_path'].fillna('http://www.clipartbest.com/cliparts/yio/66g/yio66g5eT.jpg',inplace=True)
         
-        col1, col2 = st.columns([1, 3])
-        col1.image(selected_movie_info.iloc[0]['TI_poster_path'], width=400, use_column_width=True)
+        # Affichage des informations du film sélectionné
+        col1.header("Film sélectionné :")
+        
+        col11, col12 = col1.columns([1, 2])
 
-        title_container = col2.empty()
-        release_container = col2.empty()
-        ratings_container = col2.empty()
-        votes_container = col2.empty()
+        col11.image(selected_movie_info.iloc[0]['TI_poster_path'], width=200, use_column_width=True)
 
-        title_container.text_input("Titre :", key="title_selected", value=selected_movie_info.iloc[0]['TI_primaryTitle'])
-        release_container.text_input("Date de sortie :", key="release_selected", value=round(selected_movie_info.iloc[0]['TI_startYear']))
-        ratings_container.text_input("Note moy. :", key="ratings_selected", value=selected_movie_info.iloc[0]['RA_averageRating'])
-        votes_container.text_input("Votes :", key="votes_selected", value=round(selected_movie_info.iloc[0]['RA_numVotes']))
+        detail_film = f'''
+                **Titre :** {selected_movie_info.iloc[0]['TI_primaryTitle']} \n
+                **Date de sortie :** {round(selected_movie_info.iloc[0]['TI_startYear'])} \n
+                **Note moy. :** {selected_movie_info.iloc[0]['RA_averageRating']} \n
+                **Votes :** {round(selected_movie_info.iloc[0]['RA_numVotes'])} \n
+                **Résumé :**   {selected_movie_info.iloc[0]['TI_overview']}
+            '''
+        col12.markdown(detail_film) 
 
-        st.write(f"Résumé :")
-        st.write(f"{selected_movie_info.iloc[0]['TI_overview']}")
-
-        st.header("Films recommandés :")
+        col2.header("Films recommandés :")
+        tab1_reco = col2.tabs(["#1", "#2", "#3", "#4", "#5"])
 
         # Affichage des recommandations
-        for index, row in recommended_movies.iterrows():
+        index = 0
+        for _, row in recommended_movies.iterrows():
+
             movie_title = row['TI_primaryTitle']
             poster_path = row['TI_poster_path']
             overview = row['TI_overview']
@@ -124,20 +117,18 @@ if user_input:
             average_rating = row['RA_averageRating']
             num_votes = round(row['RA_numVotes'])
 
-            col1, col2 = st.columns([1, 3])
-            col1.image(poster_path, width=400, use_column_width=True)
 
-            title_container = col2.empty()
-            release_container = col2.empty()
-            ratings_container = col2.empty()
-            votes_container = col2.empty()
+            with tab1_reco[index]:
+                col21, col22 = tab1_reco[index].columns([1, 2])
+                col21.image(poster_path, width=400, use_column_width=True)
 
-            title_container.text_input("Titre :", key=f"title_{index}", value=movie_title)
-            release_container.text_input("Date de sortie :", key=f"release_{index}", value=start_year)
-            ratings_container.text_input("Note moy. :", key=f"ratings_{index}", value=average_rating)
-            votes_container.text_input("Votes :", key=f"votes_{index}", value=num_votes)
+                detail_film_reco = f'''
+                        **Titre :** {movie_title} \n
+                        **Date de sortie :** {start_year} \n
+                        **Note moy. :** {average_rating} \n
+                        **Votes :** {num_votes} \n
+                        **Résumé :**   {overview}
+                    '''
+                col22.markdown(detail_film_reco) 
 
-            st.write(f"Résumé :")
-            st.write(f"{overview}")
-
-            st.markdown("<hr>", unsafe_allow_html=True)
+            index += 1
