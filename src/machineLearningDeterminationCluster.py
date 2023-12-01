@@ -25,7 +25,7 @@ from matplotlib.lines import Line2D  # permet la création des lignes personnali
 with warnings.catch_warnings():
     warnings.simplefilter(action='ignore', category=FutureWarning)
 
-    df = pd.read_csv('./src/data/preparation/ML_F2_merged_data_v3.csv.csv_explore.csv', sep=',', encoding='UTF-8', low_memory=False)
+    df = pd.read_csv('http://hiddenvault.fr/P2_Systeme_de_recommandation_de_films/ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
 
     # Sélection des colonnes numériques du DataFrame
     numeric_columns = df.select_dtypes(include=['float64', 'int64'])

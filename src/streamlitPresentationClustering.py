@@ -8,7 +8,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # Chargement du dataframe à partir du fichier CSV
-df = pd.read_csv('ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
+df = pd.read_csv('http://hiddenvault.fr/P2_Systeme_de_recommandation_de_films/ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
 
 # Sélection des colonnes numériques du dataframe
 df_numeric = df.select_dtypes(include=['float64', 'int64'])
@@ -27,10 +27,15 @@ df['cluster'] = kmeans.fit_predict(df_numeric_normalized)
 def lire_css(fichier):
     with open(fichier, 'r', encoding='utf-8') as f:
         return f.read()
-contenu_html = lire_css('./pages/st.css')
+contenu_html = lire_css('terminal.css')
 
 # Application de la css
 st.markdown(contenu_html, unsafe_allow_html = True)
+
+# Affichage de la bannière
+image_url= 'http://hiddenvault.fr/P2_Systeme_de_recommandation_de_films/banner.png'
+code_html = f"<img src='{image_url}' width='100%'/>"
+st.markdown(code_html, unsafe_allow_html = True)
 
 st.header("Notre recommandation...")
 
