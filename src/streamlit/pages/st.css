@@ -1,8 +1,9 @@
 <style>
 .main {
     /*background-color: #000000; /* Noir */
-    /*background-image: url("https://i.imgur.com/JLe0dXC.jpg"); */
-    color: rgb(19, 18, 18); /* Blanc */
+    /*background-image: url("https://i.imgur.com/JLe0dXC.jpg");*/
+    background-image: url("https://i.imgur.com/obBxOQQ.jpg");
+    color: rgb(255, 255, 255); /* Blanc */
     background-position: center;
     background-size: cover;
     /*margin-left: 20px ;
@@ -20,18 +21,25 @@ background-repeat:no-repeat
 [data-testid="stHeader"] {
     background-color: rgba(0, 0, 0, 0);
 }
+[data-testid="column"] {
+    background-color: rgba(95, 95, 95, 0.397);
+    padding: 3px;
+}
 h1 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     /*width: 500px;
     border: 1px solid black;*/
 }
 h2 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     /*width: 500px;
     border: 1px solid black;*/
 }
 p {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 3px;
     /*width: 500px;*/
     /*border: 1px solid black;*/
 }

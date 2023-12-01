@@ -53,10 +53,7 @@ df['cluster'] = kmeans.fit_predict(df_numeric_normalized)
 # Affichage de la bannière
 st.markdown(contenu_html, unsafe_allow_html = True)
 
-st.header("Notre recommandation...")
-
-# Saisie du nom du film
-# user_input = st.text_input("Enter movie name :")
+st.header("Notre recommandation par la méthode du clustering")
 
 PrimTitleList = df.sort_values('TI_primaryTitle')
 user_input = st.selectbox("Saisir un nom de film :", PrimTitleList['TI_primaryTitle'], None)
@@ -65,16 +62,7 @@ if user_input:
     # Recherche et recommandation des films
     matching_movies = df[df['TI_primaryTitle'].str.contains(user_input, case=False, na=False)]
 
-    # if matching_movies.empty:
-    #     st.warning(f"Aucun film trouvé avec la correspondance '{user_input}'. Veuillez réessayer.")
-    # else:
-    #     # Affichage des films correspondants dans une liste déroulante
-    #     selected_movie = st.selectbox("Select movie :", matching_movies['TI_primaryTitle'])
-
-    # Récupération des informations sur le film sélectionné
-    # selected_movie_info = matching_movies[matching_movies['TI_primaryTitle'] == selected_movie].iloc[0]
     selected_movie_info = dataframe_with_selections(matching_movies)
-    # st.write(selected_movie_info)
     
     # Si un film est selectionné (df <> vide)
     if selected_movie_info.empty == False:
@@ -98,7 +86,7 @@ if user_input:
         # Affichage des informations du film sélectionné
         st.header("Film sélectionné :")
         
-        col1, col2 = st.columns([1, 3])
+        col1, col2 = st.columns([1, 2])
         col1.image(selected_movie_info.iloc[0]['TI_poster_path'], width=400, use_column_width=True)
 
         title_container = col2.empty()
@@ -125,7 +113,7 @@ if user_input:
             average_rating = row['RA_averageRating']
             num_votes = round(row['RA_numVotes'])
 
-            col1, col2 = st.columns([1, 3])
+            col1, col2 = st.columns([1, 2])
             col1.image(poster_path, width=400, use_column_width=True)
 
             title_container = col2.empty()
