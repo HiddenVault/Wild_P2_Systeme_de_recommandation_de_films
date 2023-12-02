@@ -25,7 +25,7 @@ from tabulate import tabulate
 # On ignore les avertissements
 warnings.filterwarnings("ignore")
 
-df = pd.read_csv('./data/preparation/ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
+df = pd.read_csv('http://hiddenvault.fr/P2_Systeme_de_recommandation_de_films/ML_F2_merged_data_v3.csv', sep=',', encoding='UTF-8', low_memory=False)
 
 # Voir s'il est utile de dimensionner la largeur du dataframe et de ses colonnes
 # Définition de la largeur d'affichage maximale
@@ -203,6 +203,7 @@ def movie_recommendation(movie_name):
 # Menu (pour éviter d'avoir à relancer le script)
 while True:
     print()
+    print("🇳  🇪  🇮  🇬  🇭  🇧  🇴  🇷  🇸")
     print("🌃 📺 🍕 Recommandation de films 📺 🎞 🤩")
     user_input = input("⌨️  Entrez le nom du film (ou 'quitter' pour sortir) : ")
 

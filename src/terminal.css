@@ -1,3 +1,4 @@
+<style>
 :root {
   --global-font-size: 15px;
   --global-line-height: 1.4em;
@@ -1007,3 +1008,4 @@ figure > figcaption {
 .hljs-strong {
   font-weight: bold;
 }
+</style>
