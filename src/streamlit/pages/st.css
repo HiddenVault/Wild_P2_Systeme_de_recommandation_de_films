@@ -27,11 +27,13 @@ background-repeat:no-repeat
 }
 h1 {
     color: rgb(255, 255, 255);
+    /*background-color: rgba(95, 95, 95, 0.397);*/
     /*width: 500px;
     border: 1px solid black;*/
 }
 h2 {
     color: rgb(255, 255, 255);
+    background-color: rgba(95, 95, 95, 0.397);
     /*width: 500px;
     border: 1px solid black;*/
 }
@@ -43,4 +45,5 @@ p {
     /*width: 500px;*/
     /*border: 1px solid black;*/
 }
+white { color: rgb(255, 255, 255) }
 </style>
